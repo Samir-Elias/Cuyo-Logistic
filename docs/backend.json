@@ -1,0 +1,102 @@
+{
+  "entities": {
+    "service": {
+      "title": "Service",
+      "description": "Represents a service offered by the company.",
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "description": "The name of the service."
+        },
+        "descripcion_corta": {
+          "type": "string",
+          "description": "A short description of the service."
+        },
+        "descripcion_larga": {
+          "type": "string",
+          "description": "A long description of the service."
+        },
+        "icono": {
+          "type": "string",
+          "description": "The name of the Lucide icon for the service."
+        },
+        "orden": {
+          "type": "number",
+          "description": "The display order of the service."
+        },
+        "es_activo": {
+          "type": "boolean",
+          "description": "Whether the service is currently active."
+        }
+      },
+      "required": ["nombre", "descripcion_corta", "icono", "orden", "es_activo"]
+    },
+    "company": {
+      "title": "Company",
+      "description": "Represents general company information.",
+      "type": "object",
+      "properties": {
+        "historia": {
+          "type": "string",
+          "description": "The history of the company."
+        },
+        "mision": {
+          "type": "string",
+          "description": "The company's mission."
+        },
+        "alcance": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The company's reach or service areas."
+        }
+      },
+      "required": ["historia", "mision"]
+    },
+    "contact": {
+        "title": "Contact",
+        "description": "Represents the contact information for the company.",
+        "type": "object",
+        "properties": {
+            "direccion": {
+                "type": "string",
+                "description": "The company's address."
+            },
+            "telefono": {
+                "type": "string",
+                "description": "The company's phone number."
+            },
+            "email_ventas": {
+                "type": "string",
+                "description": "The company's sales email."
+            }
+        },
+        "required": ["direccion", "telefono", "email_ventas"]
+    }
+  },
+  "auth": {
+    "providers": []
+  },
+  "firestore": {
+    "/services/{serviceId}": {
+      "schema": {
+        "$ref": "#/entities/service"
+      },
+      "description": "Stores the services offered by the company."
+    },
+    "/company/datos_generales": {
+      "schema": {
+        "$ref": "#/entities/company"
+      },
+      "description": "Stores general company information."
+    },
+    "/contact/contact_info": {
+        "schema": {
+            "$ref": "#/entities/contact"
+        },
+        "description": "Stores the contact information for the company."
+    }
+  }
+}
