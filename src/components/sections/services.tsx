@@ -3,13 +3,19 @@
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Droplets, Container, Building2, Icon } from "lucide-react";
 import { useServices } from "@/hooks/use-services";
-import { useMemo } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
 
 const iconMap: { [key: string]: React.ElementType } = {
   Droplets,
   Container,
   Building2,
+};
+
+const serviceLinks: { [key: string]: string } = {
+  "transporte-de-liquidos": "/flexis",
+  "contenedores": "/contenedores",
+  "modulos-habitacionales": "/modulos",
 };
 
 export default function Services() {
@@ -68,15 +74,17 @@ export default function Services() {
         </div>
         <div className="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3 mt-12">
           {services && services.map((service) => (
-            <Card key={service.id} className="h-full transition-all duration-300 hover:bg-background hover:shadow-lg hover:-translate-y-2">
-              <CardHeader className="gap-4">
-                {renderIcon(service.icono)}
-                <div className="space-y-1">
-                  <CardTitle>{service.nombre}</CardTitle>
-                  <CardDescription>{service.descripcion_corta}</CardDescription>
-                </div>
-              </CardHeader>
-            </Card>
+            <Link key={service.id} href={serviceLinks[service.id] || '#'} className="block h-full">
+              <Card className="h-full transition-all duration-300 hover:bg-background hover:shadow-lg hover:-translate-y-2">
+                <CardHeader className="gap-4">
+                  {renderIcon(service.icono)}
+                  <div className="space-y-1">
+                    <CardTitle>{service.nombre}</CardTitle>
+                    <CardDescription>{service.descripcion_corta}</CardDescription>
+                  </div>
+                </CardHeader>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>
