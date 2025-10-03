@@ -1,3 +1,16 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A semi-truck driving on a highway at dusk, representing logistics and transport.",
+      "imageUrl": "https://images.unsplash.com/photo-1636070762406-4262052fa6ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0cnVjayUyMGhpZ2h3YXl8ZW58MHx8fHwxNzU5NDE5NDQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "truck highway"
+    },
+    {
+      "id": "about-us-image",
+      "description": "A modern office setting with people collaborating, symbolizing the company's history and team.",
+      "imageUrl": "https://images.unsplash.com/photo-1558959356-2f36c7322d3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjBvZmZpY2V8ZW58MHx8fHwxNzU5NDUzMDI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern office"
+    }
+  ]
 }
