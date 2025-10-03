@@ -72,7 +72,7 @@ export default function Header() {
         </nav>
         <div className="flex flex-1 items-center justify-end gap-4">
           <Button asChild className="hidden sm:flex">
-            <Link href="#contact">Consultar y Cotizar</Link>
+            <Link href="/#contact">Consultar y Cotizar</Link>
           </Button>
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
@@ -134,7 +134,7 @@ export default function Header() {
                   </AccordionItem>
                 </Accordion>
                 <Button asChild className="mt-4">
-                  <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Consultar y Cotizar</Link>
+                  <Link href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>Consultar y Cotizar</Link>
                 </Button>
               </div>
             </SheetContent>

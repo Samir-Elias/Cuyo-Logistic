@@ -1,3 +1,4 @@
+
 import { MapPin, Phone, Mail } from 'lucide-react';
 import ContactForm from '@/components/contact-form';
 
@@ -44,7 +45,9 @@ export default function Contact() {
             </li>
           </ul>
         </div>
-        <ContactForm />
+        <div id="contact-form-wrapper">
+          <ContactForm />
+        </div>
       </div>
     </section>
   );
