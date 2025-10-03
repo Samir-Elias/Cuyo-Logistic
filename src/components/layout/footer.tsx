@@ -18,10 +18,10 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Secciones</h3>
             <ul className="space-y-2">
-              <li><Link href="#hero" className="text-sm text-muted-foreground hover:text-primary">Inicio</Link></li>
-              <li><Link href="#about" className="text-sm text-muted-foreground hover:text-primary">Nuestra Empresa</Link></li>
-              <li><Link href="#services" className="text-sm text-muted-foreground hover:text-primary">Servicios</Link></li>
-              <li><Link href="#contact" className="text-sm text-muted-foreground hover:text-primary">Contacto</Link></li>
+              <li><Link href="/" className="text-sm text-muted-foreground hover:text-primary">Inicio</Link></li>
+              <li><Link href="/#about" className="text-sm text-muted-foreground hover:text-primary">Nuestra Empresa</Link></li>
+              <li><Link href="/#services" className="text-sm text-muted-foreground hover:text-primary">Servicios</Link></li>
+              <li><Link href="/#contact" className="text-sm text-muted-foreground hover:text-primary">Contacto</Link></li>
             </ul>
           </div>
           <div>
