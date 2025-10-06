@@ -14,9 +14,9 @@ const iconMap: { [key: string]: React.ElementType } = {
 };
 
 const serviceLinks: { [key: string]: string } = {
-  "transporte-de-liquidos": "/flexis",
+  "transporte-de-líquidos": "/flexis",
   "contenedores": "/contenedores",
-  "modulos-habitacionales": "/modulos",
+  "módulos-habitacionales": "/modulos",
 };
 
 export default function Services() {
