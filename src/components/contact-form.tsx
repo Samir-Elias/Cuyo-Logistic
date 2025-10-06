@@ -24,6 +24,8 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { sendEmail } from "@/app/actions/send-email";
+import React from "react";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -43,6 +45,7 @@ const formSchema = z.object({
 
 export default function ContactForm() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -55,18 +58,29 @@ export default function ContactForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // This is a placeholder for form submission.
-    // In a real application, you would send this data to a server or webhook.
-    // For example: `fetch('/api/zapier-webhook', { method: 'POST', body: JSON.stringify(values) })`
-    console.log("Form values:", values);
-    
-    toast({
-      title: "¡Formulario Enviado!",
-      description: "Gracias por su consulta. Nos pondremos en contacto a la brevedad.",
-    });
-
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    try {
+      const result = await sendEmail(values);
+      if (result.success) {
+        toast({
+          title: "¡Formulario Enviado!",
+          description: "Gracias por su consulta. Nos pondremos en contacto a la brevedad.",
+        });
+        form.reset();
+      } else {
+        throw new Error(result.error || "Error desconocido");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast({
+        variant: "destructive",
+        title: "Error al enviar",
+        description: "Hubo un problema al enviar su consulta. Por favor, intente de nuevo.",
+      });
+    } finally {
+        setIsSubmitting(false);
+    }
   }
 
   return (
@@ -159,7 +173,9 @@ export default function ContactForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">Enviar Consulta</Button>
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? "Enviando..." : "Enviar Consulta"}
+            </Button>
           </form>
         </Form>
       </CardContent>
