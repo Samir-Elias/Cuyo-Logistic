@@ -36,8 +36,8 @@ export default function Footer() {
                 <span className="sr-only">Facebook</span>
               </a>
             </div>
-             <p className="text-sm text-muted-foreground mt-4">Email: <a href="mailto:contacto@logisticacuyo.com.ar" className="hover:text-primary">contacto@logisticacuyo.com.ar</a></p>
-            <p className="text-sm text-muted-foreground">Tel: <a href="tel:+54123456789" className="hover:text-primary">+54 123 456 789</a></p>
+             <p className="text-sm text-muted-foreground mt-4">Email: <a href="mailto:samireliassalatino@gmail.com" className="hover:text-primary">samireliassalatino@gmail.com</a></p>
+            <p className="text-sm text-muted-foreground">Tel: <a href="tel:5492614666991" className="hover:text-primary">+54 9 261 466-6991</a></p>
           </div>
         </div>
         <div className="mt-8 border-t border-border/40 pt-4 text-center text-sm text-muted-foreground">
