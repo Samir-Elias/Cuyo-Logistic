@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { useFirestore } from '@/firebase/provider';
 
 export interface CompanyData {
@@ -17,31 +17,29 @@ export const useCompanyData = () => {
     const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
-        if (!firestore) {
-            // Firestore might not be initialized yet
+        if (!firestore || firestore.app.options.projectId === 'your-project-id') {
+            setIsLoading(false);
             return;
         };
 
-        const fetchCompanyData = async () => {
-            setIsLoading(true);
-            try {
-                const docRef = doc(firestore, 'company', 'datos_generales');
-                const docSnap = await getDoc(docRef);
-
-                if (docSnap.exists()) {
-                    setCompanyData(docSnap.data() as CompanyData);
-                } else {
-                    console.log("No such document!");
-                }
-            } catch (err) {
-                console.error(err);
-                setError(err instanceof Error ? err : new Error('An unknown error occurred while fetching company data'));
-            } finally {
-                setIsLoading(false);
+        setIsLoading(true);
+        const docRef = doc(firestore, 'company', 'datos_generales');
+        
+        const unsubscribe = onSnapshot(docRef, (docSnap) => {
+            if (docSnap.exists()) {
+                setCompanyData(docSnap.data() as CompanyData);
+            } else {
+                console.log("Company data document does not exist!");
+                setCompanyData(null);
             }
-        };
+            setIsLoading(false);
+        }, (err) => {
+            console.error("Error fetching company data:", err);
+            setError(err);
+            setIsLoading(false);
+        });
 
-        fetchCompanyData();
+        return () => unsubscribe();
     }, [firestore]);
 
     return { data: companyData, isLoading, error };

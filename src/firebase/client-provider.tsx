@@ -1,9 +1,9 @@
 // src/firebase/client-provider.tsx
 'use client';
 import { FirebaseApp, initializeApp } from 'firebase/app';
-import { Auth, connectAuthEmulator, getAuth } from 'firebase/auth';
-import { Firestore, connectFirestoreEmulator, getFirestore } from 'firebase/firestore';
-import { PropsWithChildren, useEffect, useMemo, useState } from 'react';
+import { Auth, getAuth } from 'firebase/auth';
+import { Firestore, getFirestore } from 'firebase/firestore';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { FirebaseProvider }from '@/firebase/provider';
 
 // This is a placeholder for a real Firebase config.
@@ -25,13 +25,17 @@ export function FirebaseClientProvider({ children }: FirebaseClientProviderProps
   const [firestore, setFirestore] = useState<Firestore | null>(null);
 
   useEffect(() => {
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const firestore = getFirestore(app);
-    
-    setApp(app);
-    setAuth(auth);
-    setFirestore(firestore);
+    try {
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const firestore = getFirestore(app);
+      
+      setApp(app);
+      setAuth(auth);
+      setFirestore(firestore);
+    } catch (e) {
+      console.error("Firebase initialization failed:", e);
+    }
   }, []);
 
   return (

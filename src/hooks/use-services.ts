@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
+import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
 import { useFirestore } from '@/firebase/provider';
 
 export interface Service {
@@ -21,28 +21,26 @@ export const useServices = () => {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!firestore) {
-      // Firestore might not be initialized yet
+    if (!firestore || firestore.app.options.projectId === 'your-project-id') {
+      setIsLoading(false);
       return;
-    };
+    }
 
-    const fetchServices = async () => {
-      setIsLoading(true);
-      try {
-        const servicesCollection = collection(firestore, 'services');
-        const q = query(servicesCollection, where('es_activo', '==', true), orderBy('orden'));
-        const querySnapshot = await getDocs(q);
-        const servicesData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Service));
-        setServices(servicesData);
-      } catch (err) {
-        console.error(err);
-        setError(err instanceof Error ? err : new Error('An unknown error occurred'));
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    setIsLoading(true);
+    const servicesCollection = collection(firestore, 'services');
+    const q = query(servicesCollection, where('es_activo', '==', true), orderBy('orden'));
 
-    fetchServices();
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const servicesData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Service));
+      setServices(servicesData);
+      setIsLoading(false);
+    }, (err) => {
+      console.error("Error fetching services:", err);
+      setError(err);
+      setIsLoading(false);
+    });
+
+    return () => unsubscribe();
   }, [firestore]);
 
   return { data: services, isLoading, error };
