@@ -6,16 +6,29 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import ContactForm from '@/components/contact-form';
 import { Building2, Clock, Wrench, HardHat, Home, Briefcase } from 'lucide-react';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function ModulosPage() {
+  const heroImage = PlaceHolderImages.find(p => p.id === 'modules-hero');
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative h-[60vh] min-h-[400px] w-full flex items-center justify-center text-center text-white bg-gradient-to-r from-gray-700 to-gray-900">
-          <div className="absolute inset-0 bg-black/50 -z-10" />
-          <div className="container px-4 md:px-6">
+        <section className="relative h-[60vh] min-h-[400px] w-full flex items-center justify-center text-center text-white">
+          {heroImage && (
+            <Image
+              src={heroImage.imageUrl}
+              alt={heroImage.description}
+              fill
+              className="object-cover -z-10"
+              priority
+              data-ai-hint={heroImage.imageHint}
+            />
+          )}
+          <div className="absolute inset-0 bg-black/60 -z-10" />
+          <div className="container px-4 md:px-6 z-10">
             <div className="max-w-3xl mx-auto space-y-4">
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
                 Bunka: Módulos Habitacionales Versátiles

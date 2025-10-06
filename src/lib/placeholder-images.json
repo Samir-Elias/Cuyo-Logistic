@@ -11,6 +11,24 @@
       "description": "A modern office setting with people collaborating, symbolizing the company's history and team.",
       "imageUrl": "https://images.unsplash.com/photo-1558959356-2f36c7322d3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjBvZmZpY2V8ZW58MHx8fHwxNzU5NDUzMDI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern office"
+    },
+    {
+      "id": "containers-hero",
+      "description": "A view of a busy shipping container port with cranes and stacked containers.",
+      "imageUrl": "https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzaGlwcGluZyUyMGNvbnRhaW5lcnN8ZW58MHx8fHwxNzE2OTU2MjM4fDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "shipping containers"
+    },
+    {
+      "id": "flexis-hero",
+      "description": "A close-up of a flexitank being filled with a liquid, showcasing the technology.",
+      "imageUrl": "https://images.unsplash.com/photo-1628258334105-2a0b3d6ef5f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsaXF1aWQlMjB0cmFuc3BvcnR8ZW58MHx8fHwxNzE2OTU2MzE4fDA&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "liquid transport"
+    },
+    {
+      "id": "modules-hero",
+      "description": "A modern modular building complex installed on-site, looking clean and professional.",
+      "imageUrl": "https://images.unsplash.com/photo-1515974256630-babc85765b1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2R1bGFyJTIwY29uc3RydWN0aW9ufGVufDB8fHx8MTcxNjk1NjM5N3ww&ixlib=rb-4.0.3&q=80&w=1080",
+      "imageHint": "modular construction"
     }
   ]
 }
