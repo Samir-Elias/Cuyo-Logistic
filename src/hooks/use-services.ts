@@ -1,40 +1,49 @@
-// This is a placeholder for a real implementation.
-// In a real application, you would fetch this data from Firestore.
+"use client";
 
-// Simulating the data that would come from Firestore
-const mockServices = [
-  {
-    id: "transporte-de-liquidos",
-    nombre: "Transporte de Líquidos",
-    descripcion_corta: "Especialistas en el transporte seguro y eficiente de líquidos a granel, incluyendo isotanques y flexitanks, cumpliendo con los más altos estándares de calidad.",
-    icono: "Droplets",
-    orden: 1,
-    es_activo: true
-  },
-  {
-    id: "contenedores",
-    nombre: "Logística de Contenedores",
-    descripcion_corta: "Gestionamos el movimiento de contenedores desde y hacia los principales puertos, ofreciendo soluciones de logística terrestre integrales para su carga.",
-    icono: "Container",
-    orden: 2,
-    es_activo: true
-  },
-  {
-    id: "modulos-habitacionales",
-    nombre: "Módulos Habitacionales",
-    descripcion_corta: "A través de Bunka Módulos, proveemos soluciones de espacios modulares versátiles y de alta calidad para oficinas, viviendas y proyectos especiales.",
-    icono: "Building2",
-    orden: 3,
-    es_activo: true
-  }
-];
+import { useState, useEffect } from 'react';
+import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
+import { useFirestore } from '@/firebase/provider';
 
-// This custom hook simulates fetching services data.
-// In a real scenario, this would use 'useCollection' from a Firebase library.
+export interface Service {
+  id: string;
+  nombre: string;
+  descripcion_corta: string;
+  descripcion_larga?: string;
+  icono: string;
+  orden: number;
+  es_activo: boolean;
+}
+
 export const useServices = () => {
-  // The hook would return loading and error states as well.
-  // For now, we just return the static data.
-  const data = mockServices.filter(service => service.es_activo).sort((a, b) => a.orden - b.orden);
-  
-  return { data, isLoading: false, error: null };
+  const firestore = useFirestore();
+  const [services, setServices] = useState<Service[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    if (!firestore) {
+      // Firestore might not be initialized yet
+      return;
+    };
+
+    const fetchServices = async () => {
+      setIsLoading(true);
+      try {
+        const servicesCollection = collection(firestore, 'services');
+        const q = query(servicesCollection, where('es_activo', '==', true), orderBy('orden'));
+        const querySnapshot = await getDocs(q);
+        const servicesData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Service));
+        setServices(servicesData);
+      } catch (err) {
+        console.error(err);
+        setError(err instanceof Error ? err : new Error('An unknown error occurred'));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, [firestore]);
+
+  return { data: services, isLoading, error };
 };

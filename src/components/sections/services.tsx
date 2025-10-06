@@ -61,6 +61,11 @@ export default function Services() {
   if (error) {
     return <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-card"><div className="container">Error al cargar los servicios.</div></section>
   }
+  
+  // Create a mapping from service nombre to a slug-like id for the URL
+  const getServiceSlug = (serviceName: string) => {
+    return serviceName.toLowerCase().replace(/\s+/g, '-');
+  }
 
   return (
     <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-card">
@@ -74,19 +79,23 @@ export default function Services() {
           </div>
         </div>
         <div className="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3 mt-12">
-          {services && services.map((service) => (
-            <Link key={service.id} href={serviceLinks[service.id] || '#'} className="block h-full">
-              <Card className="h-full transition-all duration-300 hover:bg-background hover:shadow-lg hover:-translate-y-2">
-                <CardHeader className="gap-4">
-                  {renderIcon(service.icono)}
-                  <div className="space-y-1">
-                    <CardTitle>{service.nombre}</CardTitle>
-                    <CardDescription>{service.descripcion_corta}</CardDescription>
-                  </div>
-                </CardHeader>
-              </Card>
-            </Link>
-          ))}
+          {services && services.map((service) => {
+            const slug = getServiceSlug(service.nombre);
+            const link = serviceLinks[slug] || '#';
+            return (
+                <Link key={service.id} href={link} className="block h-full">
+                <Card className="h-full transition-all duration-300 hover:bg-background hover:shadow-lg hover:-translate-y-2">
+                    <CardHeader className="gap-4">
+                    {renderIcon(service.icono)}
+                    <div className="space-y-1">
+                        <CardTitle>{service.nombre}</CardTitle>
+                        <CardDescription>{service.descripcion_corta}</CardDescription>
+                    </div>
+                    </CardHeader>
+                </Card>
+                </Link>
+            )
+          })}
         </div>
       </div>
     </section>
