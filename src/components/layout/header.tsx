@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from 'react';
@@ -133,7 +132,10 @@ export default function Header() {
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
-                <Button asChild className="mt-4">
+                
+              </div>
+               <div className="mt-4 px-2">
+                <Button asChild className="w-full">
                   <Link href="/#contact" onClick={() => setIsMobileMenuOpen(false)}>Consultar y Cotizar</Link>
                 </Button>
               </div>
