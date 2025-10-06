@@ -4,7 +4,6 @@
 const mockCompanyData = {
   historia: "Desde el año 2000, Logística Cuyo S.A. ha sido un pilar en el transporte y la logística de la región. Con una trayectoria forjada en la confianza y la eficiencia, conectamos puntos clave del país para impulsar el negocio de nuestros clientes.",
   mision: "Nuestra base de operaciones en Mendoza nos posiciona estratégicamente, con un alcance que se extiende a los principales centros económicos como Buenos Aires y Rosario. Estamos comprometidos con la innovación y la excelencia en cada envío.",
-  alcance: ["Mendoza", "Buenos Aires", "Rosario", "Principales puertos del país"]
 };
 
 // This custom hook simulates fetching company data.

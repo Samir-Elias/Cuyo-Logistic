@@ -1,10 +1,11 @@
 "use client";
 
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Droplets, Container, Building2, Icon } from "lucide-react";
+import { Droplets, Container, Building2 } from "lucide-react";
 import { useServices } from "@/hooks/use-services";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
+import React from "react";
 
 const iconMap: { [key: string]: React.ElementType } = {
   Droplets,
@@ -22,7 +23,7 @@ export default function Services() {
   const { data: services, isLoading, error } = useServices();
 
   const renderIcon = (iconName: string) => {
-    const IconComponent = iconMap[iconName];
+    const IconComponent = iconName ? iconMap[iconName] : null;
     return IconComponent ? <IconComponent className="h-10 w-10 text-primary" /> : null;
   };
 
