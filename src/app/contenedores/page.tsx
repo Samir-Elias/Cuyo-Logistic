@@ -1,13 +1,20 @@
+import type { Metadata } from 'next';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
+import WhatsAppButton from '@/components/whatsapp-button';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import ContactForm from '@/components/contact-form';
-import { Ship, HardHat, Wrench, Package, Truck, Building } from 'lucide-react';
+import { Ship, HardHat, Wrench, Package, Truck, Building, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+
+export const metadata: Metadata = {
+  title: 'Alquiler y Venta de Contenedores Marítimos | Logística Cuyo S.A.',
+  description: 'Contenedores Dry, Reefer y Open Top para alquiler, venta y modificación. Soluciones para almacenamiento, construcción y proyectos a medida en todo Argentina.',
+};
 
 export default function ContenedoresPage() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'containers-hero');
@@ -29,6 +36,12 @@ export default function ContenedoresPage() {
            )}
            <div className="absolute inset-0 bg-black/60 -z-10" />
            <div className="container px-4 md:px-6 z-10">
+            {/* Breadcrumb */}
+            <nav className="mb-4 flex items-center justify-center gap-1 text-sm text-white/70">
+              <Link href="/" className="hover:text-white transition-colors">Inicio</Link>
+              <ChevronRight className="h-3 w-3" />
+              <span className="text-white">Contenedores</span>
+            </nav>
             <div className="max-w-3xl mx-auto space-y-4">
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
                 Alquiler y Venta de Contenedores Marítimos
@@ -94,25 +107,25 @@ export default function ContenedoresPage() {
                   </TableHeader>
                   <TableBody>
                     <TableRow>
-                      <TableCell>Dry Van 20'</TableCell>
+                      <TableCell>Dry Van 20&apos;</TableCell>
                       <TableCell>6.1m x 2.4m x 2.6m</TableCell>
                       <TableCell>33 m³</TableCell>
                       <TableCell>Estándar para carga seca general.</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell>Dry Van 40' High Cube</TableCell>
+                      <TableCell>Dry Van 40&apos; High Cube</TableCell>
                       <TableCell>12.2m x 2.4m x 2.9m</TableCell>
                       <TableCell>76 m³</TableCell>
                       <TableCell>Mayor altura para cargas voluminosas.</TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell>Reefer 40' HC</TableCell>
+                      <TableCell>Reefer 40&apos; HC</TableCell>
                       <TableCell>12.2m x 2.4m x 2.9m</TableCell>
                       <TableCell>67 m³</TableCell>
                       <TableCell>Control de temp. de -25°C a +25°C.</TableCell>
                     </TableRow>
                      <TableRow>
-                      <TableCell>Open Top 20'</TableCell>
+                      <TableCell>Open Top 20&apos;</TableCell>
                       <TableCell>6.1m x 2.4m x 2.6m</TableCell>
                       <TableCell>32 m³</TableCell>
                       <TableCell>Techo removible para carga superior.</TableCell>
@@ -161,7 +174,7 @@ export default function ContenedoresPage() {
             </div>
           </div>
         </section>
-        
+
         {/* Secondary CTA */}
         <section id="contact-form" className="w-full py-12 md:py-24 lg:py-32 bg-card">
           <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
@@ -180,6 +193,7 @@ export default function ContenedoresPage() {
         </section>
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

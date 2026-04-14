@@ -1,14 +1,20 @@
+import type { Metadata } from 'next';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
+import WhatsAppButton from '@/components/whatsapp-button';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import ContactForm from '@/components/contact-form';
-import { Droplets, ShieldCheck, Recycle, Wine, Droplet, Package } from 'lucide-react';
+import { Droplets, ShieldCheck, Recycle, Wine, Droplet, Package, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
+export const metadata: Metadata = {
+  title: 'Transporte de Líquidos a Granel | Flexitanks e Isotanks | Logística Cuyo S.A.',
+  description: 'Especialistas en transporte de líquidos a granel: vino, aceites, jugos y químicos. Utilizamos Flexitanks, Isotanks e IBCs con certificación ISO 9001. Cobertura en todo Argentina.',
+};
 
 export default function FlexisPage() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'flexis-hero');
@@ -30,6 +36,12 @@ export default function FlexisPage() {
           )}
           <div className="absolute inset-0 bg-black/60 -z-10" />
           <div className="container px-4 md:px-6 z-10">
+            {/* Breadcrumb */}
+            <nav className="mb-4 flex items-center justify-center gap-1 text-sm text-white/70">
+              <Link href="/" className="hover:text-white transition-colors">Inicio</Link>
+              <ChevronRight className="h-3 w-3" />
+              <span className="text-white">Transporte de Líquidos</span>
+            </nav>
             <div className="max-w-3xl mx-auto space-y-4">
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
                 Transporte de Líquidos a Granel Seguro y Certificado
@@ -175,6 +187,7 @@ export default function FlexisPage() {
         </section>
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

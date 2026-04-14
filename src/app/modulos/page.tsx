@@ -1,13 +1,20 @@
+import type { Metadata } from 'next';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
+import WhatsAppButton from '@/components/whatsapp-button';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import ContactForm from '@/components/contact-form';
-import { Building2, Clock, Wrench, HardHat, Home, Briefcase } from 'lucide-react';
+import { Building2, Clock, Wrench, HardHat, Home, Briefcase, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+
+export const metadata: Metadata = {
+  title: 'Bunka: Módulos Habitacionales y Obradores | Logística Cuyo S.A.',
+  description: 'Módulos habitacionales prefabricados para obradores, oficinas, dormitorios y campamentos. Entrega rápida, full equipamiento y armado profesional en todo el país.',
+};
 
 export default function ModulosPage() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'modules-hero');
@@ -29,6 +36,12 @@ export default function ModulosPage() {
           )}
           <div className="absolute inset-0 bg-black/60 -z-10" />
           <div className="container px-4 md:px-6 z-10">
+            {/* Breadcrumb */}
+            <nav className="mb-4 flex items-center justify-center gap-1 text-sm text-white/70">
+              <Link href="/" className="hover:text-white transition-colors">Inicio</Link>
+              <ChevronRight className="h-3 w-3" />
+              <span className="text-white">Módulos Habitacionales</span>
+            </nav>
             <div className="max-w-3xl mx-auto space-y-4">
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
                 Bunka: Módulos Habitacionales Versátiles
@@ -155,7 +168,7 @@ export default function ModulosPage() {
             </div>
           </div>
         </section>
-        
+
         {/* Secondary CTA */}
         <section id="contact-form" className="w-full py-12 md:py-24 lg:py-32 bg-card">
           <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
@@ -174,6 +187,7 @@ export default function ModulosPage() {
         </section>
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
