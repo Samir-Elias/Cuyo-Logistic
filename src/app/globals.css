@@ -1,6 +1,6 @@
 /* ──────────────────────────────── reset + tokens ──────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box}
-html,body{margin:0;padding:0}
+html,body{margin:0;padding:0;overflow-x:hidden}
 html{scroll-behavior:smooth; scroll-padding-top: 80px}
 @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
 body{
@@ -562,7 +562,7 @@ footer.foot{background: var(--ink); color: var(--bg); padding: var(--space-8) 0 
 footer.foot .inner{max-width:1440px;margin:0 auto;padding:0 var(--space-6)}
 footer.foot .marquee{
   font-family:var(--font-display); font-weight:600;
-  font-size: clamp(60px, 14vw, 220px); letter-spacing:-.04em; line-height:1;
+  font-size: clamp(36px, 9vw, 160px); letter-spacing:-.04em; line-height:1;
   white-space:nowrap; overflow:hidden;
   border-bottom:1px solid rgba(255,255,255,.16); padding-bottom: var(--space-5); margin-bottom: var(--space-6);
   position:relative; margin-left: calc(var(--space-6) * -1); margin-right: calc(var(--space-6) * -1);
