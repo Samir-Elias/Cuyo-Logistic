@@ -1,35 +1,68 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+'use client';
+
+import { useEffect } from 'react';
+import { SITE, STATS, HERO_IMAGE } from '@/data/site';
+
+function WaIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.05 4.91A10 10 0 0 0 4.06 18.4L2 22l3.69-1.02a10 10 0 0 0 13.36-13.07ZM12 20.13a8.06 8.06 0 0 1-4.11-1.13l-.3-.18-2.19.6.59-2.14-.19-.31a8.07 8.07 0 1 1 6.2 3.16Zm4.42-5.97c-.24-.12-1.43-.71-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.21-1.43-1.35-1.67-.14-.24-.01-.37.1-.49.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.16 1.51.1.46-.07 1.43-.58 1.63-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" />
+    </svg>
+  );
+}
 
 export default function Hero() {
-  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
+  useEffect(() => {
+    const l = document.createElement('link');
+    l.rel = 'preload';
+    l.as = 'image';
+    l.href = HERO_IMAGE.src;
+    (l as HTMLLinkElement & { fetchPriority: string }).fetchPriority = 'high';
+    document.head.appendChild(l);
+    return () => l.remove();
+  }, []);
+
+  const waUrl = `https://wa.me/${SITE.phoneE164}?text=${encodeURIComponent(SITE.whatsappText)}`;
 
   return (
-    <section id="hero" className="relative h-[80vh] min-h-[500px] w-full flex items-center justify-center text-center text-white">
-      {heroImage && (
-        <Image
-          src={heroImage.imageUrl}
-          alt={heroImage.description}
-          fill
-          className="object-cover -z-10"
-          priority
-          data-ai-hint={heroImage.imageHint}
+    <section className="hero-photo" id="top">
+      <div className="bgimg">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={HERO_IMAGE.src}
+          alt={HERO_IMAGE.alt}
+          loading="eager"
+          fetchPriority="high"
         />
-      )}
-      <div className="absolute inset-0 bg-black/50 -z-10" />
-      <div className="container px-4 md:px-6">
-        <div className="max-w-3xl mx-auto space-y-4">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-            Soluciones Integrales para Cargas Exigentes
-          </h1>
-          <p className="text-lg md:text-xl text-gray-200">
-            Transporte, logística y almacenamiento a la medida de sus necesidades.
-          </p>
-          <Button asChild size="lg" className="mt-6">
-            <Link href="#contact">Consultar y Cotizar</Link>
-          </Button>
+      </div>
+      <div className="content">
+        <div className="eyebrow">MENDOZA · DESDE EL AÑO {SITE.since}</div>
+        <h1>
+          Soluciones integrales<br />
+          <span style={{ fontStyle: 'italic', fontFamily: "'Instrument Serif', serif", fontWeight: 400, color: '#d9ad6c' }}>
+            para cargas exigentes.
+          </span>
+        </h1>
+        <p className="sub">
+          Transporte de líquidos a granel, alquiler y venta de contenedores
+          y construcción modular. Operamos del valle al puerto.
+        </p>
+        <div className="ctas">
+          <a href="#contacto" className="btn btn-primary btn-lg">
+            Cotizar y consultar <span className="arrow">→</span>
+          </a>
+          <a href={waUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-lg">
+            <WaIcon /> WhatsApp directo
+          </a>
+        </div>
+
+        <div className="meta-strip">
+          {STATS.map((s, i) => (
+            <div className="item" key={i}>
+              <div className="k">{s.pre}{s.v}</div>
+              <div className="l">{s.l}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

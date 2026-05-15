@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Fondo azul -->
+  <rect width="32" height="32" rx="6" fill="#3498db"/>
+  <!-- Cuerpo del camión (caja) -->
+  <rect x="3" y="11" width="16" height="11" rx="1.5" fill="white"/>
+  <!-- Cabina -->
+  <path d="M19 14 L19 22 L28 22 L28 17 L25 14 Z" fill="white"/>
+  <!-- Ventana cabina -->
+  <path d="M20.5 15 L24.5 15 L27 17.5 L27 18.5 L20.5 18.5 Z" fill="#3498db"/>
+  <!-- Rueda izquierda -->
+  <circle cx="8" cy="22" r="2.8" fill="#3498db"/>
+  <circle cx="8" cy="22" r="1.4" fill="white"/>
+  <!-- Rueda derecha -->
+  <circle cx="23" cy="22" r="2.8" fill="#3498db"/>
+  <circle cx="23" cy="22" r="1.4" fill="white"/>
+</svg>

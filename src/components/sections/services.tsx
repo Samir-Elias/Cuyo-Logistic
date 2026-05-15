@@ -1,102 +1,63 @@
-"use client";
+import { SERVICES, Service } from '@/data/site';
 
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Droplets, Container, Building2 } from "lucide-react";
-import { useServices } from "@/hooks/use-services";
-import { Skeleton } from "@/components/ui/skeleton";
-import Link from "next/link";
-import React from "react";
+function SvcIcon({ id }: { id: string }) {
+  if (id === 'flexis') return (
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <rect x="3" y="10" width="22" height="12" rx="1" />
+      <circle cx="9" cy="24" r="2.2" /><circle cx="21" cy="24" r="2.2" />
+      <path d="M25 14h4l1 3v3h-5" />
+      <path d="M7 14v4M11 14v4M15 14v4M19 14v4" opacity=".5" />
+    </svg>
+  );
+  if (id === 'contenedores') return (
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <rect x="4" y="6" width="24" height="20" rx="0.5" />
+      <path d="M8 6v20M12 6v20M16 6v20M20 6v20M24 6v20" opacity=".55" />
+    </svg>
+  );
+  return (
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M4 26V14l12-8 12 8v12" />
+      <path d="M10 26v-8h12v8" />
+      <path d="M14 26v-4h4v4" />
+    </svg>
+  );
+}
 
-const iconMap: { [key: string]: React.ElementType } = {
-  Droplets,
-  Container,
-  Building2,
-};
-
-const serviceLinks: { [key: string]: string } = {
-  "transporte-de-líquidos": "/flexis",
-  "contenedores": "/contenedores",
-  "módulos-habitacionales": "/modulos",
-};
+function ServiceCardC({ svc }: { svc: Service }) {
+  return (
+    <div className="svc-card C" id={svc.id} style={{ '--svc-color': svc.color } as React.CSSProperties}>
+      <div className="ico"><SvcIcon id={svc.id} /></div>
+      <div className="meta-row">
+        <span className="tag">{svc.tag}</span>
+        <span>· {svc.num}/03</span>
+      </div>
+      <h3>{svc.title}</h3>
+      <p>{svc.desc}</p>
+      <ul>
+        {svc.bullets.map((b, i) => <li key={i}>{b}</li>)}
+      </ul>
+      <a href="#contacto" className="more">Cotizar <span>→</span></a>
+    </div>
+  );
+}
 
 export default function Services() {
-  const { data: services, isLoading, error } = useServices();
-
-  const renderIcon = (iconName: string) => {
-    const IconComponent = iconName ? iconMap[iconName] : null;
-    return IconComponent ? <IconComponent className="h-10 w-10 text-primary" /> : null;
-  };
-
-  if (isLoading) {
-    return (
-        <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-card">
-            <div className="container px-4 md:px-6">
-                <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                    <div className="space-y-2">
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Nuestros Servicios</h2>
-                        <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                            Tres pilares fundamentales para ofrecerle una solución logística completa y a su medida.
-                        </p>
-                    </div>
-                </div>
-                <div className="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3 mt-12">
-                    {[...Array(3)].map((_, index) => (
-                        <Card key={index} className="h-full">
-                            <CardHeader className="gap-4">
-                                <Skeleton className="h-10 w-10 rounded-full" />
-                                <div className="space-y-2">
-                                    <Skeleton className="h-6 w-3/4" />
-                                    <Skeleton className="h-4 w-full" />
-                                    <Skeleton className="h-4 w-5/6" />
-                                </div>
-                            </CardHeader>
-                        </Card>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-  }
-
-  if (error) {
-    return <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-card"><div className="container">Error al cargar los servicios.</div></section>
-  }
-  
-  // Create a mapping from service nombre to a slug-like id for the URL
-  const getServiceSlug = (serviceName: string) => {
-    return serviceName.toLowerCase().replace(/\s+/g, '-');
-  }
-
   return (
-    <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-card">
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Nuestros Servicios</h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Tres pilares fundamentales para ofrecerle una solución logística completa y a su medida.
-            </p>
-          </div>
+    <section id="servicios" className="services container" style={{ paddingTop: 'var(--section-pad-y)' }}>
+      <div className="section-head">
+        <div>
+          <div className="eyebrow" style={{ marginBottom: 16 }}>QUÉ HACEMOS</div>
+          <h2>Tres pilares.<br />Una sola red.</h2>
         </div>
-        <div className="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3 mt-12">
-          {services && services.map((service) => {
-            const slug = getServiceSlug(service.nombre);
-            const link = serviceLinks[slug] || '#';
-            return (
-                <Link key={service.id} href={link} className="block h-full">
-                <Card className="h-full transition-all duration-300 hover:bg-background hover:shadow-lg hover:-translate-y-2">
-                    <CardHeader className="gap-4">
-                    {renderIcon(service.icono)}
-                    <div className="space-y-1">
-                        <CardTitle>{service.nombre}</CardTitle>
-                        <CardDescription>{service.descripcion_corta}</CardDescription>
-                    </div>
-                    </CardHeader>
-                </Card>
-                </Link>
-            )
-          })}
-        </div>
+        <p>
+          Ofrecemos servicios complementarios bajo el mismo equipo de operaciones:
+          transporte de líquidos, contenedores y módulos habitacionales. Pensados
+          para clientes industriales que necesitan respuesta previsible y trazable.
+        </p>
+      </div>
+      <div className="svc-grid">
+        {SERVICES.map(s => <ServiceCardC key={s.id} svc={s} />)}
       </div>
     </section>
   );

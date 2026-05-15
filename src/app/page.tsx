@@ -1,27 +1,31 @@
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
-import Hero from '@/components/sections/hero';
-import Stats from '@/components/sections/stats';
-import About from '@/components/sections/about';
-import Services from '@/components/sections/services';
-import Coverage from '@/components/sections/coverage';
-import Contact from '@/components/sections/contact';
-import WhatsAppButton from '@/components/whatsapp-button';
+import Nav from '@/components/Nav';
+import Hero from '@/components/sections/Hero';
+import TrustStrip from '@/components/sections/TrustStrip';
+import Services from '@/components/sections/Services';
+import About from '@/components/sections/About';
+import Coverage from '@/components/sections/Coverage';
+import Fleet from '@/components/sections/Fleet';
+import FAQ from '@/components/sections/FAQ';
+import Contact from '@/components/sections/Contact';
+import Footer from '@/components/Footer';
+import WaFloat from '@/components/WaFloat';
+import SectionIndex from '@/components/SectionIndex';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-1">
-        <Hero />
-        <Stats />
-        <About />
-        <Services />
-        <Coverage />
-        <Contact />
-      </main>
+    <>
+      <Nav />
+      <Hero />
+      <TrustStrip />
+      <Services />
+      <About />
+      <Coverage />
+      <Fleet />
+      <FAQ />
+      <Contact />
       <Footer />
-      <WhatsAppButton />
-    </div>
+      <WaFloat />
+      <SectionIndex />
+    </>
   );
 }

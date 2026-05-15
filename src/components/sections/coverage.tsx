@@ -1,41 +1,80 @@
-import { MapPin } from 'lucide-react';
-
-const provinces = [
-  { name: 'Mendoza', detail: 'Sede central' },
-  { name: 'San Juan', detail: 'Cobertura regional' },
-  { name: 'San Luis', detail: 'Cobertura regional' },
-  { name: 'Buenos Aires', detail: 'Puerto y distribución' },
-  { name: 'Rosario', detail: 'Nodo logístico' },
-  { name: 'Córdoba', detail: 'Centro del país' },
-];
+import { CITIES_BY_COUNTRY } from '@/data/site';
 
 export default function Coverage() {
+  const totalNodes = CITIES_BY_COUNTRY.reduce((n, g) => n + g.cities.length, 0);
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-card">
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Cobertura Nacional</h2>
-            <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-              Operamos en las principales provincias de Argentina, con base en Mendoza y proyección hacia los grandes centros de consumo y puertos del país.
-            </p>
+    <section id="cobertura" className="coverage">
+      <div className="container">
+        <div className="section-head">
+          <div>
+            <div className="eyebrow" style={{ marginBottom: 16 }}>COBERTURA</div>
+            <h2>Donde<br />operamos.</h2>
           </div>
+          <p>
+            Sede central en Mendoza, con depósitos y oficinas operativas en
+            las principales provincias argentinas, Chile y Uruguay. {totalNodes} nodos
+            conectados a los puertos del Atlántico y el Pacífico.
+          </p>
         </div>
-        <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6">
-          {provinces.map((province) => (
-            <div
-              key={province.name}
-              className="flex items-start gap-3 rounded-lg border border-border bg-background p-4 transition-colors hover:border-primary/50"
-            >
-              <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                <MapPin className="h-4 w-4 text-primary" />
+
+        <div className="cov-chapters">
+          {CITIES_BY_COUNTRY.map((g, idx) => {
+            const isPrimary = idx === 0;
+            const isSolo = g.cities.length === 1;
+            return (
+              <div
+                key={g.iso}
+                className={`cov-chapter${isPrimary ? ' primary' : ''}${isSolo ? ' solo' : ''}`}
+              >
+                <div className="num">CAP · {String(idx + 1).padStart(2, '0')}</div>
+
+                <div className="heading">
+                  <h3 className="country">
+                    {isPrimary ? <span className="underline">{g.country}</span> : g.country}
+                  </h3>
+                  <div className="meta">
+                    <span>ISO · {g.iso}</span>
+                    <span>·</span>
+                    <span>{g.cities.length} {g.cities.length === 1 ? 'nodo' : 'nodos'}</span>
+                    {isPrimary && (
+                      <>
+                        <span>·</span>
+                        <span className="pulse">Sede central activa</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                <div className="cities">
+                  {g.cities.map((c, i) => (
+                    <div key={i} className={`cov-city${c.primary ? ' primary' : ''}`}>
+                      <div className="nm">{c.name}</div>
+                      <div className="rl">{c.role}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div>
-                <p className="font-semibold">{province.name}</p>
-                <p className="text-sm text-muted-foreground">{province.detail}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
+        </div>
+
+        <div className="cov-summary">
+          <div className="it">
+            <div className="v"><span className="ac">{totalNodes}</span></div>
+            <div className="l">Nodos operativos</div>
+          </div>
+          <div className="it">
+            <div className="v">{CITIES_BY_COUNTRY.length}</div>
+            <div className="l">Países</div>
+          </div>
+          <div className="it">
+            <div className="v">2</div>
+            <div className="l">Océanos · Atlántico / Pacífico</div>
+          </div>
+          <div className="it">
+            <div className="v"><span className="ac">24</span>/7</div>
+            <div className="l">Coordinación</div>
+          </div>
         </div>
       </div>
     </section>
