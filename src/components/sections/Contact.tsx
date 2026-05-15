@@ -38,29 +38,33 @@ function PhoneIcon() {
 export default function Contact() {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    setError('');
     const fd = new FormData(e.currentTarget);
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.fromEntries(fd)),
-      });
-      if (res.ok) {
-        setSent(true);
-      } else {
-        setError('Error al enviar. Intentá por WhatsApp.');
-      }
-    } catch {
-      setError('Error de red. Intentá por WhatsApp.');
-    } finally {
-      setLoading(false);
-    }
+    const name    = fd.get('name')    as string;
+    const email   = fd.get('email')   as string;
+    const phone   = fd.get('phone')   as string;
+    const service = fd.get('service') as string;
+    const message = fd.get('message') as string;
+
+    const lines = [
+      `Hola, me comunico desde el sitio web de Logística Cuyo.`,
+      ``,
+      `*Nombre / Empresa:* ${name}`,
+      `*Email:* ${email}`,
+      phone   ? `*Teléfono:* ${phone}`   : null,
+      service ? `*Servicio:* ${service}` : null,
+      ``,
+      `*Mensaje:*`,
+      message,
+    ].filter(l => l !== null).join('\n');
+
+    const url = `https://wa.me/${SITE.phoneE164}?text=${encodeURIComponent(lines)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+    setLoading(false);
+    setSent(true);
   }
 
   const waUrl = `https://wa.me/${SITE.phoneE164}?text=${encodeURIComponent(SITE.whatsappText)}`;
@@ -150,8 +154,7 @@ export default function Contact() {
 
                 <div className="submit">
                   <div className="legal">Al enviar aceptás que te contactemos por email o teléfono.</div>
-                  {error && <div style={{ color: 'red', fontSize: 13 }}>{error}</div>}
-                  <button type="submit" className="btn btn-accent btn-lg" disabled={loading}>
+                    <button type="submit" className="btn btn-accent btn-lg" disabled={loading}>
                     {loading ? 'Enviando…' : <>Enviar consulta <span className="arrow">→</span></>}
                   </button>
                 </div>
