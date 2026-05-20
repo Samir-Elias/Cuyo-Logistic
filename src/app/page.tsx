@@ -4,6 +4,8 @@ import TrustStrip from '@/components/sections/TrustStrip';
 import Services from '@/components/sections/Services';
 import About from '@/components/sections/About';
 import Coverage from '@/components/sections/Coverage';
+import Team from '@/components/sections/Team';
+import Products from '@/components/sections/Products';
 import Fleet from '@/components/sections/Fleet';
 import FAQ from '@/components/sections/FAQ';
 import Contact from '@/components/sections/Contact';
@@ -20,6 +22,8 @@ export default function Home() {
       <Services />
       <About />
       <Coverage />
+      <Team />
+      <Products />
       <Fleet />
       <FAQ />
       <Contact />

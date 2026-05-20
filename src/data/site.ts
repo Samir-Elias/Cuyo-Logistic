@@ -2,7 +2,7 @@ export const SITE = {
   brand: "Logística Cuyo",
   shortBrand: "Cuyo",
   monogram: "LC",
-  tagline: "Soluciones integrales para cargas exigentes.",
+  tagline: "Empaque inteligente, logística sin retorno.",
   since: 2000,
   phoneE164: "5492612455281",
   phoneDisplay: "+54 9 261 245-5281",
@@ -12,9 +12,11 @@ export const SITE = {
 };
 
 export const NAV_ITEMS = [
-  { id: "servicios", label: "Servicios" },
+  { id: "servicios", label: "Qué hacemos" },
   { id: "empresa",   label: "Empresa" },
-  { id: "cobertura", label: "Cobertura" },
+  { id: "depositos", label: "Depósitos" },
+  { id: "equipo",    label: "Equipo" },
+  { id: "productos", label: "Productos" },
   { id: "flota",     label: "Flota" },
   { id: "faq",       label: "FAQ" },
   { id: "contacto",  label: "Contacto" },
@@ -36,15 +38,15 @@ export interface Service {
 
 export const SERVICES: Service[] = [
   {
-    id: "flexis",
+    id: "flexitanks",
     num: "01",
     color: "#1f6fb8",
     tag: "Líquidos foodgrade",
-    title: "Transporte de líquidos a granel",
-    short: "Flexitanks · ISOtanks · IBCs",
-    desc: "Operamos flexitanks, isotanques e IBCs para exportación de líquidos foodgrade y químicos. Diseño de carga, inserción, monitoreo y descarga en destino.",
+    title: "Flexitanks",
+    short: "Hasta 24.000L por unidad",
+    desc: "Bolsas de polietileno multicapa para transporte de líquidos foodgrade y químicos no peligrosos dentro de contenedor 20'. Inserción en planta, monitoreo y descarga asistida en destino.",
     image: "https://images.unsplash.com/photo-1605745341112-85968b19335b?w=1600&q=85&auto=format&fit=crop",
-    chips: ["Foodgrade", "Químicos", "Vinos · Aceites · Jugos", "Inserción en planta"],
+    chips: ["Foodgrade", "Vinos · Aceites · Jugos", "Inserción en planta", "Monitoreo"],
     bullets: [
       "Hasta 24.000 L por flexitank",
       "Coordinación con navieras",
@@ -52,46 +54,47 @@ export const SERVICES: Service[] = [
     ],
   },
   {
-    id: "contenedores",
+    id: "isotanks",
     num: "02",
     color: "#d97706",
-    tag: "Dry & Reefer",
-    title: "Contenedores Dry & Reefer",
-    short: "Alquiler · venta · almacenaje",
-    desc: "Provisión de contenedores secos y refrigerados para abastecimiento, almacenaje móvil y obra. Flota propia con disponibilidad inmediata en Cuyo y Buenos Aires.",
-    image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1600&q=85&auto=format&fit=crop",
-    chips: ["20' & 40'", "Reefer", "High Cube", "Mensual / Anual"],
+    tag: "Líquidos a granel",
+    title: "ISO tanks",
+    short: "Multimodal · químicos & alimentos",
+    desc: "Cisternas multimodales homologadas IMO para químicos clase II/III y alimentos sensibles. Calefacción opcional, intercambio puerto-planta y trazabilidad punta a punta.",
+    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&q=85&auto=format&fit=crop",
+    chips: ["Homologados IMO", "Químicos II/III", "Calefacción opcional", "Multimodal"],
     bullets: [
-      "Disponibilidad en 48hs",
-      "Mantenimiento integral",
-      "Reefer −25°C a +25°C",
+      "Capacidad típica 21.000–26.000 L",
+      "Trazabilidad punta a punta",
+      "Disponibilidad regional",
     ],
   },
   {
-    id: "modulos",
+    id: "ibcs",
     num: "03",
     color: "#3d6b1f",
-    tag: "Marca registrada",
-    brand: "Bunka",
-    title: "Bunka — Módulos habitacionales versátiles",
-    short: "Construcción modular llave en mano · Marca registrada",
-    desc: "Bunka es nuestra línea de módulos habitacionales versátiles: oficinas en obra, alojamientos mineros, comedores y sanitarios. Diseño, fabricación e instalación llave en mano, trasladables y listos para habitar.",
+    tag: "Volúmenes parciales",
+    title: "IBCs",
+    short: "1.000L · apilables · recargables",
+    desc: "Contenedores intermedios (1.000L) para volúmenes parciales, ideales para distribución, consolidación y producción de bajo volumen. Compatibles con foodgrade y químicos.",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=85&auto=format&fit=crop",
-    chips: ["Oficinas", "Dormitorios", "Comedores", "Sanitarios"],
+    chips: ["1.000L", "Apilables", "Recargables", "Foodgrade"],
     bullets: [
-      "Llave en mano",
-      "Aislación térmica industrial",
-      "Conexiones eléctricas e hidráulicas",
+      "Trazabilidad por lote",
+      "Optimiza distribución parcial",
+      "Stock rotativo en depósito",
     ],
   },
 ];
 
 export const STATS = [
   { v: 25,  pre: "+", l: "Años de experiencia",    d: "Operando líquidos a granel desde el año 2000." },
-  { v: 6,   pre: "",  l: "Provincias y países",     d: "Mendoza, San Juan, La Rioja, Buenos Aires, Rosario, Chile y Uruguay." },
-  { v: 500, pre: "+", l: "Operaciones realizadas",  d: "Cargas foodgrade y químicas hacia los principales puertos." },
-  { v: 3,   pre: "",  l: "Pilares de servicio",     d: "Flexitanks, contenedores y construcción modular." },
+  { v: 4,   pre: "",  l: "Países de operación",    d: "Argentina, Chile, Uruguay y Paraguay hacia todo el mundo." },
+  { v: 500, pre: "+", l: "Operaciones realizadas", d: "Cargas foodgrade y químicas hacia los principales puertos." },
+  { v: 3,   pre: "",  l: "Pilares de servicio",    d: "Flexitanks, ISO tanks e IBCs." },
 ];
+
+export const ABOUT_COPY = "Operamos desde Argentina, Chile, Uruguay y Paraguay hacia todo el mundo. Contamos con equipos propios y nos ocupamos de cuidar tu producto de punta a punta, ofreciendo asistencia técnica y asesoramiento para la descarga.";
 
 export interface City { name: string; role: string; primary?: boolean }
 export interface CountryGroup { country: string; iso: string; summary: string; cities: City[] }
@@ -100,32 +103,46 @@ export const CITIES_BY_COUNTRY: CountryGroup[] = [
   {
     country: "Argentina",
     iso: "AR",
-    summary: "Sede central · 6 nodos operativos",
-    cities: [
-      { name: "Mendoza",      role: "Sede central",         primary: true },
-      { name: "Buenos Aires", role: "Puerto · Distribución" },
-      { name: "Rosario",      role: "Nodo logístico" },
-      { name: "San Juan",     role: "Depósito regional" },
-      { name: "La Rioja",     role: "Cobertura NOA" },
-      { name: "San Luis",     role: "Cobertura cuyana" },
-    ],
-  },
-  {
-    country: "Chile",
-    iso: "CL",
-    summary: "Puerto Pacífico · 1 nodo",
-    cities: [
-      { name: "Valparaíso", role: "Puerto · Pacífico" },
-    ],
+    summary: "Sede central · Lista en actualización",
+    cities: [],
   },
   {
     country: "Uruguay",
     iso: "UY",
-    summary: "Puerto Atlántico · 1 nodo",
-    cities: [
-      { name: "Montevideo", role: "Puerto · Atlántico" },
-    ],
+    summary: "Lista en actualización",
+    cities: [],
   },
+  {
+    country: "Chile",
+    iso: "CL",
+    summary: "Lista en actualización",
+    cities: [],
+  },
+  {
+    country: "Paraguay",
+    iso: "PY",
+    summary: "Lista en actualización",
+    cities: [],
+  },
+];
+
+export interface TeamArea { id: string; title: string; desc: string }
+export const TEAM: TeamArea[] = [
+  { id: "comercial", title: "Comercial", desc: "Conocimiento total de tus operaciones." },
+  { id: "tecnico",   title: "Técnico",   desc: "Soporte tecnológico y científico para trasladar tu producto." },
+  { id: "operativo", title: "Operativo", desc: "Asistencia a la carga." },
+];
+
+export interface Product {
+  id: string;
+  title: string;
+  note: string;
+  partner: string | null;
+  placeholder: boolean;
+}
+export const PRODUCTS: Product[] = [
+  { id: "graneles", title: "Graneles", note: "Somos agentes oficiales de LAF.", partner: "LAF", placeholder: false },
+  { id: "isotanks", title: "ISO tanks", note: "Tanqueras propias.",            partner: null,  placeholder: true },
 ];
 
 export const FLEET = [
@@ -154,19 +171,19 @@ export const CLIENTS = [
 export const FAQS = [
   {
     q: "¿Qué tipos de carga manejan en flexitanks?",
-    a: "Operamos exclusivamente líquidos no peligrosos: aceites vegetales, vinos a granel, jugos concentrados, base de glicerina y otros foodgrade. Para químicos clase II y III utilizamos isotanques homologados IMO.",
+    a: "Operamos líquidos no peligrosos: aceites vegetales, vinos a granel, jugos concentrados, base de glicerina y otros foodgrade. Para químicos clase II y III utilizamos isotanques homologados IMO.",
   },
   {
-    q: "¿Tienen disponibilidad inmediata de contenedores?",
-    a: "Sí. Mantenemos stock rotativo en depósitos de Mendoza, Buenos Aires y Rosario. Para 20' y 40' dry la entrega típica es 48hs; reefer puede requerir hasta 5 días según especificación.",
+    q: "¿Desde qué países operan?",
+    a: "Operamos desde Argentina, Chile, Uruguay y Paraguay hacia todo el mundo. Contamos con equipos propios y asistencia técnica en cada origen.",
   },
   {
-    q: "¿Hacen instalación e instalaciones en obra para los módulos Bunka?",
-    a: "Entregamos el módulo llave en mano: traslado, anclaje, conexiones eléctricas y sanitarias. Trabajamos con obras civiles, mineras y agroindustriales en todo el centro y oeste argentino.",
+    q: "¿Ofrecen asesoramiento técnico?",
+    a: "Sí. Nuestro equipo técnico brinda soporte tecnológico y científico para trasladar tu producto, y el equipo operativo asiste a la carga y a la descarga en destino.",
   },
   {
     q: "¿En qué puertos operan?",
-    a: "Despachamos principalmente desde Buenos Aires, Rosario, Valparaíso (Chile) y Montevideo (Uruguay). Coordinamos toda la cadena logística: planta del cliente, ruta terrestre, consolidación, despacho aduanero y embarque marítimo.",
+    a: "Despachamos principalmente desde Buenos Aires, Rosario, Valparaíso (Chile), Montevideo (Uruguay) y puertos paraguayos. Coordinamos toda la cadena logística: planta del cliente, ruta terrestre, consolidación, despacho aduanero y embarque.",
   },
   {
     q: "¿Cómo se cotiza una operación?",

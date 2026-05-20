@@ -38,14 +38,14 @@ export default function Hero() {
       <div className="content">
         <div className="eyebrow">MENDOZA · DESDE EL AÑO {SITE.since}</div>
         <h1>
-          Soluciones integrales<br />
+          Empaque inteligente,<br />
           <span style={{ fontStyle: 'italic', fontFamily: "'Instrument Serif', serif", fontWeight: 400, color: '#d9ad6c' }}>
-            para cargas exigentes.
+            logística sin retorno.
           </span>
         </h1>
         <p className="sub">
-          Transporte de líquidos a granel, alquiler y venta de contenedores
-          y construcción modular. Operamos del valle al puerto.
+          Transporte de graneles y graneles consolidados. Desde la elección
+          del contenedor hasta llegar a destino.
         </p>
         <div className="ctas">
           <a href="#contacto" className="btn btn-primary btn-lg">

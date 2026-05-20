@@ -1,7 +1,7 @@
 import { SERVICES, Service } from '@/data/site';
 
 function SvcIcon({ id }: { id: string }) {
-  if (id === 'flexis') return (
+  if (id === 'flexitanks') return (
     <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
       <rect x="3" y="10" width="22" height="12" rx="1" />
       <circle cx="9" cy="24" r="2.2" /><circle cx="21" cy="24" r="2.2" />
@@ -9,17 +9,20 @@ function SvcIcon({ id }: { id: string }) {
       <path d="M7 14v4M11 14v4M15 14v4M19 14v4" opacity=".5" />
     </svg>
   );
-  if (id === 'contenedores') return (
+  if (id === 'isotanks') return (
     <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="4" y="6" width="24" height="20" rx="0.5" />
-      <path d="M8 6v20M12 6v20M16 6v20M20 6v20M24 6v20" opacity=".55" />
+      <rect x="3" y="11" width="22" height="10" rx="5" />
+      <circle cx="9" cy="24" r="2.2" /><circle cx="21" cy="24" r="2.2" />
+      <path d="M25 15h4v4h-4" />
+      <path d="M9 13v6M14 13v6M19 13v6" opacity=".5" />
     </svg>
   );
+  // ibcs
   return (
     <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M4 26V14l12-8 12 8v12" />
-      <path d="M10 26v-8h12v8" />
-      <path d="M14 26v-4h4v4" />
+      <rect x="6" y="6" width="20" height="20" rx="0.5" />
+      <path d="M6 11h20M6 16h20M6 21h20" opacity=".55" />
+      <path d="M11 6v20M21 6v20" opacity=".55" />
     </svg>
   );
 }
@@ -48,12 +51,12 @@ export default function Services() {
       <div className="section-head">
         <div>
           <div className="eyebrow" style={{ marginBottom: 16 }}>QUÉ HACEMOS</div>
-          <h2>Tres pilares.<br />Una sola red.</h2>
+          <h2>El envase correcto<br />para cada carga.</h2>
         </div>
         <p>
-          Ofrecemos servicios complementarios bajo el mismo equipo de operaciones:
-          transporte de líquidos, contenedores y módulos habitacionales. Pensados
-          para clientes industriales que necesitan respuesta previsible y trazable.
+          Ofrecemos el envase correcto para transportar tus productos: flexitanks,
+          ISO tanks e IBCs. Asesoramos en la elección, asistimos a la carga y
+          acompañamos hasta la descarga en destino.
         </p>
       </div>
       <div className="svc-grid">

@@ -4,9 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 
 const ITEMS = [
   { id: 'top',       label: 'Inicio' },
-  { id: 'servicios', label: 'Servicios' },
+  { id: 'servicios', label: 'Qué hacemos' },
   { id: 'empresa',   label: 'Empresa' },
-  { id: 'cobertura', label: 'Cobertura' },
+  { id: 'depositos', label: 'Depósitos' },
+  { id: 'equipo',    label: 'Equipo' },
+  { id: 'productos', label: 'Productos' },
   { id: 'flota',     label: 'Flota' },
   { id: 'faq',       label: 'FAQ' },
   { id: 'contacto',  label: 'Contacto' },

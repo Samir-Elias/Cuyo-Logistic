@@ -1,4 +1,4 @@
-import { SITE, STATS } from '@/data/site';
+import { SITE, STATS, ABOUT_COPY } from '@/data/site';
 
 export default function About() {
   return (
@@ -7,44 +7,34 @@ export default function About() {
         <div className="about-grid">
           <div className="about-left">
             <h2>
-              +25 años<br />
-              moviendo <em>Cuyo</em>.
+              Cuidamos tu producto<br />
+              <em>de punta a punta</em>.
             </h2>
 
             <div className="about-copy">
-              <p>
-                Operamos con oficinas en Mendoza y depósitos en Buenos Aires, Rosario,
-                San Juan, La Rioja, Chile y Uruguay, trabajando junto a exportadores,
-                importadores y compañías marítimas.
-              </p>
-              <p>
-                <strong>Cada operación importa.</strong> Coordinamos cada eslabón —desde
-                la planta del cliente hasta el embarque— y respondemos en tiempo real
-                ante cualquier desvío. Esa previsibilidad es lo que nos permite trabajar
-                con clientes industriales exigentes.
-              </p>
+              <p>{ABOUT_COPY}</p>
             </div>
 
             <div className="about-pillars">
               <div className="p">
-                <div className="n">01 / SERVICIO</div>
-                <div className="t">Líquidos a granel</div>
-                <div className="d">Flexitanks, IBCs e ISOtanks foodgrade y químicos.</div>
+                <div className="n">01 / ORIGEN</div>
+                <div className="t">Argentina · Chile</div>
+                <div className="d">Operaciones desde nuestra sede central y nodos en el Pacífico.</div>
               </div>
               <div className="p">
-                <div className="n">02 / SERVICIO</div>
-                <div className="t">Contenedores</div>
-                <div className="d">Dry &amp; Reefer · alquiler, venta y almacenaje.</div>
+                <div className="n">02 / ORIGEN</div>
+                <div className="t">Uruguay · Paraguay</div>
+                <div className="d">Cobertura del corredor Atlántico y Mercosur.</div>
               </div>
               <div className="p">
-                <div className="n">03 / MARCA</div>
-                <div className="t">Bunka — Módulos</div>
-                <div className="d">Construcción modular habitable, llave en mano.</div>
+                <div className="n">03 / EQUIPOS</div>
+                <div className="t">Propios</div>
+                <div className="d">Flota y unidades en operación coordinadas por nuestro equipo.</div>
               </div>
               <div className="p">
                 <div className="n">04 / OPERACIÓN</div>
-                <div className="t">24/7 · Trazable</div>
-                <div className="d">Coordinación continua y reporte por hito.</div>
+                <div className="t">Punta a punta</div>
+                <div className="d">Asistencia técnica y asesoramiento para la descarga.</div>
               </div>
             </div>
           </div>
