@@ -28,7 +28,20 @@ export default function ProductGallery({ p }: { p: Product }) {
     const manual = () => { target.current = null; };
     t.addEventListener('scroll', onScroll, { passive: true });
     for (const ev of ['touchstart', 'wheel', 'pointerdown'] as const) t.addEventListener(ev, manual, { passive: true });
+    // Si cambia el ancho (rotar el celular, abrir el modal) la posición en px queda desalineada:
+    // se realinea a la foto actual. Si pasa de oculto (0px) a visible, vuelve a la primera foto.
+    let lastW = t.clientWidth;
+    const ro = new ResizeObserver(() => {
+      const w = t.clientWidth;
+      if (!w) { lastW = 0; return; }
+      if (lastW === 0) { cur.current = 0; setIdx(0); }
+      lastW = w;
+      target.current = null;
+      t.scrollTo({ left: cur.current * w, behavior: 'instant' as ScrollBehavior });
+    });
+    ro.observe(t);
     return () => {
+      ro.disconnect();
       t.removeEventListener('scroll', onScroll);
       for (const ev of ['touchstart', 'wheel', 'pointerdown'] as const) t.removeEventListener(ev, manual);
     };

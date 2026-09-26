@@ -1,6 +1,7 @@
 import { PRODUCTS, Product } from '@/data/site';
 import { Skeleton } from '@/components/Skeleton';
 import ProductGallery from '@/components/ProductGallery';
+import ProductDialogs from '@/components/ProductDialogs';
 
 function ProductIcon({ id }: { id: string }) {
   if (id === 'flexitanks') return (
@@ -76,6 +77,7 @@ export default function Products() {
             key={p.id}
             id={p.id}
             className="prod-card"
+            data-product={p.id}
             style={{ '--svc-color': p.color } as React.CSSProperties}
           >
             <Gallery p={p} />
@@ -92,11 +94,16 @@ export default function Products() {
               <ul>
                 {p.types.map((t, i) => <li key={i}>{t}</li>)}
               </ul>
-              <a href="#contacto" className="more">Cotizar <span>→</span></a>
+              <div className="prod-actions">
+                <button type="button" className="prod-open" aria-haspopup="dialog">Ver detalle <span>+</span></button>
+                <a href="#contacto" className="more">Cotizar <span>→</span></a>
+              </div>
             </div>
           </article>
         ))}
       </div>
+
+      <ProductDialogs />
     </section>
   );
 }

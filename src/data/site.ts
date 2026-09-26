@@ -47,19 +47,37 @@ export const HERO_SLIDES = [
   { src: "https://images.unsplash.com/photo-1605745341112-85968b19335b?w=2400&q=80&auto=format&fit=crop", alt: "Operación logística" },
 ];
 
+export interface ProductDetail {
+  definition: string;
+  cargo: string;
+  features: string[];
+  capacity: string;
+}
+
 export interface Product {
   id: string;
   num: string;
   color: string;
   tag: string;
   title: string;
+  subtitle: string;        // nombre técnico / alternativo
   short: string;
-  desc: string;
-  types: string[];
+  desc: string;            // texto de la tarjeta
+  types: string[];         // viñetas de la tarjeta
+  detail: ProductDetail;   // contenido del modal
+  // SEO: pensado para una futura página propia por producto (/productos/<id>).
+  metaTitle: string;
+  metaDescription: string;
   // Fotos del producto. Vacío = galería en mantenimiento (skeleton).
   images: { src: string; srcSet?: string; alt: string }[];
   photoCredit?: string;
 }
+
+const img = (base: string, widths: number[], alt: string) => ({
+  src: `/productos/${base}-${widths[widths.length - 1]}.webp`,
+  srcSet: widths.map(w => `/productos/${base}-${w}.webp ${w}w`).join(', '),
+  alt,
+});
 
 export const PRODUCTS: Product[] = [
   {
@@ -68,16 +86,30 @@ export const PRODUCTS: Product[] = [
     color: "#0052a1",
     tag: "Líquidos a granel",
     title: "Flexitanks",
+    subtitle: "Flexibag para contenedor",
     short: "Flexitanks · todos los tipos",
-    desc: "Bolsas flexibles para transportar líquidos no peligrosos dentro de un contenedor de 20'. Trabajamos todos los tipos según producto, volumen y forma de descarga.",
+    desc: "Bolsa flexible que convierte un contenedor seco de 20 pies en un tanque para líquidos no peligrosos. De un solo uso: sin limpieza ni flete de retorno.",
     types: ["Monocapa y multicapa", "Food grade", "Carga y descarga superior o inferior", "Con sistema de calefacción"],
+    detail: {
+      definition: "Bolsa flexible, monocapa o multicapa, de polietileno con cubierta de polipropileno tejido, que convierte un contenedor marítimo seco estándar de 20 pies en un tanque para líquidos.",
+      cargo: "Líquidos no peligrosos, alimentarios e industriales: aceites vegetales, vinos, jugos concentrados, agua potable, glicerina y látex.",
+      features: [
+        "De un solo uso: sin costos de limpieza ni flete de retorno del envase vacío.",
+        "Usa contenedores dry estándar, disponibles en cualquier puerto del mundo.",
+        "Menor costo de embalaje y más carga útil que tambores o IBC.",
+        "Versiones food grade, con válvula superior o inferior y con sistema de calefacción.",
+      ],
+      capacity: "De 16.000 a 24.000 litros por flexitank.",
+    },
+    metaTitle: "Flexitanks para contenedores de 20 pies | Logística Cuyo",
+    metaDescription: "Flexitanks para transportar líquidos no peligrosos a granel en contenedores de 20 pies: aceites, vinos y jugos. Sin limpieza ni flete de retorno.",
     images: [
-      { src: "/productos/flexitanks-vino-1280.webp", srcSet: "/productos/flexitanks-vino-640.webp 640w, /productos/flexitanks-vino-1280.webp 1280w", alt: "Flexitank para vino a granel dentro de un contenedor de 20 pies" },
-      { src: "/productos/flexitanks-1-1280.webp", srcSet: "/productos/flexitanks-1-640.webp 640w, /productos/flexitanks-1-1280.webp 1280w", alt: "Operario conectando la manguera de descarga a un flexitank en un contenedor de 20 pies" },
-      { src: "/productos/flexitanks-2-1280.webp", srcSet: "/productos/flexitanks-2-640.webp 640w, /productos/flexitanks-2-1280.webp 1280w", alt: "Instalación de un flexitank dentro de un contenedor" },
-      { src: "/productos/flexitanks-3-1280.webp", srcSet: "/productos/flexitanks-3-640.webp 640w, /productos/flexitanks-3-1280.webp 1280w", alt: "Flexitank lleno dentro de un contenedor" },
-      { src: "/productos/flexitanks-4-1280.webp", srcSet: "/productos/flexitanks-4-640.webp 640w, /productos/flexitanks-4-1280.webp 1280w", alt: "Camión transportando un contenedor con flexitank en el puerto" },
-      { src: "/productos/flexitanks-5-1280.webp", srcSet: "/productos/flexitanks-5-640.webp 640w, /productos/flexitanks-5-1280.webp 1280w", alt: "Control de calidad de un flexitank food grade" },
+      img("flexitanks-vino", [640, 1280], "Flexitank para vino a granel dentro de un contenedor de 20 pies"),
+      img("flexitanks-1", [640, 1280], "Operario conectando la manguera de descarga a un flexitank en un contenedor de 20 pies"),
+      img("flexitanks-2", [640, 1280], "Instalación de un flexitank dentro de un contenedor"),
+      img("flexitanks-3", [640, 1280], "Flexitank lleno dentro de un contenedor"),
+      img("flexitanks-4", [640, 1280], "Camión transportando un contenedor con flexitank en el puerto"),
+      img("flexitanks-5", [640, 1280], "Control de calidad de un flexitank food grade"),
     ],
     photoCredit: "LAF Technology",
   },
@@ -87,15 +119,29 @@ export const PRODUCTS: Product[] = [
     color: "#417dc9",
     tag: "Volúmenes intermedios",
     title: "IBC",
+    subtitle: "Contenedor intermedio para graneles",
     short: "IBC · contenedores intermedios",
-    desc: "Contenedores intermedios para graneles líquidos en volúmenes parciales. Ideales para consolidar cargas y para distribución.",
+    desc: "Contenedores intermedios de alrededor de 1.000 litros para graneles líquidos en volúmenes parciales. Ideales para consolidar cargas y para distribución.",
     types: ["Food grade y no food", "IBC de cartón", "Liners para IBC", "Consolidación de cargas"],
+    detail: {
+      definition: "Contenedor intermedio sobre pallet, de alrededor de 1.000 litros, con una bolsa interior (liner) que protege el producto. Incluye versiones de cartón, livianas y descartables.",
+      cargo: "Líquidos y semisólidos no peligrosos en volúmenes intermedios: alimentos, jugos, jarabes, aceites y productos industriales.",
+      features: [
+        "Ideal para envíos parciales o para consolidar varios productos en un contenedor.",
+        "Liners food grade y no food, compatibles con distintos tipos de IBC.",
+        "IBC de cartón: descartable y reciclable, sin retorno del envase vacío.",
+        "Se manipula con autoelevador y se apila para aprovechar el espacio.",
+      ],
+      capacity: "Alrededor de 1.000 litros por unidad.",
+    },
+    metaTitle: "IBC y liners para líquidos a granel | Logística Cuyo",
+    metaDescription: "IBC de cartón y liners food grade para transportar líquidos a granel en volúmenes intermedios. Ideales para envíos parciales y cargas consolidadas.",
     images: [
-      { src: "/productos/ibc-1-806.webp", srcSet: "/productos/ibc-1-640.webp 640w, /productos/ibc-1-806.webp 806w", alt: "IBC de cartón apilados sobre pallets en depósito" },
-      { src: "/productos/ibc-2-1180.webp", srcSet: "/productos/ibc-2-640.webp 640w, /productos/ibc-2-1180.webp 1180w", alt: "Contenedor cargado con IBC de cartón listos para exportar" },
-      { src: "/productos/ibc-3-800.webp", srcSet: "/productos/ibc-3-640.webp 640w, /productos/ibc-3-800.webp 800w", alt: "Operario preparando un IBC de cartón sobre pallet" },
-      { src: "/productos/ibc-4-1280.webp", srcSet: "/productos/ibc-4-640.webp 640w, /productos/ibc-4-1280.webp 1280w", alt: "Liner interior para IBC" },
-      { src: "/productos/ibc-5-640.webp", srcSet: "/productos/ibc-5-640.webp 640w", alt: "IBC de cartón sobre pallet plástico" },
+      img("ibc-1", [640, 806], "IBC de cartón apilados sobre pallets en depósito"),
+      img("ibc-2", [640, 1180], "Contenedor cargado con IBC de cartón listos para exportar"),
+      img("ibc-3", [640, 800], "Operario preparando un IBC de cartón sobre pallet"),
+      img("ibc-4", [640, 1280], "Liner interior para IBC"),
+      img("ibc-5", [640], "IBC de cartón sobre pallet plástico"),
     ],
     photoCredit: "LAF Technology",
   },
@@ -105,10 +151,26 @@ export const PRODUCTS: Product[] = [
     color: "#2b333f",
     tag: "Graneles sólidos",
     title: "Big bags",
+    subtitle: "Bolsa FIBC · súper saco",
     short: "Big bags · graneles sólidos",
-    desc: "Bolsas de gran capacidad para graneles sólidos: granos, azúcar, fertilizantes, minerales y polvos. Fáciles de manipular, apilar y descargar.",
-    types: ["Graneles sólidos", "Distintas capacidades", "Con o sin liner interno", "Descarga por válvula inferior"],
-    images: [],
+    desc: "Bolsas de polipropileno tejido con asas de izaje para almacenar y transportar polvos, granos y minerales. Livianas y plegables cuando están vacías.",
+    types: ["Graneles sólidos", "De 500 kg a 2 toneladas", "Con o sin liner interno", "Válvula de carga y descarga"],
+    detail: {
+      definition: "Contenedor flexible de gran capacidad (FIBC) de polipropileno tejido, reforzado con asas superiores para manipulación mecánica.",
+      cargo: "Productos secos a granel: granos, cemento, resinas plásticas, fertilizantes, arena y minerales.",
+      features: [
+        "Cuatro asas reforzadas para izar con autoelevador o grúa.",
+        "Apilado estable que aprovecha el espacio en depósito.",
+        "Livianos y plegables cuando están vacíos.",
+        "Opciones con válvula de carga y descarga, y con liner interno.",
+      ],
+      capacity: "De 500 kg a 2.000 kg por bolsa.",
+    },
+    metaTitle: "Big Bags (FIBC) para carga seca a granel | Logística Cuyo",
+    metaDescription: "Big bags de polipropileno tejido con asas reforzadas para almacenar y transportar polvos, granos y minerales. De 500 kg a 2 toneladas.",
+    images: [
+      img("bigbag-1", [630], "Big bags blancos sobre pallets en un depósito"),
+    ],
   },
   {
     id: "isotanks",
@@ -116,11 +178,25 @@ export const PRODUCTS: Product[] = [
     color: "#1b7a8c",
     tag: "Líquidos a granel",
     title: "ISO tanks",
+    subtitle: "Contenedor cisterna intermodal",
     short: "ISO tanks · cisternas multimodales",
-    desc: "Cisternas multimodales para líquidos que requieren mayor protección: químicos y alimentos sensibles. Aptas para transporte marítimo, ferroviario y por carretera.",
-    types: ["Multimodales", "Químicos y alimentos", "Calefacción opcional", "Tanqueras propias"],
+    desc: "Cisterna de acero inoxidable dentro de un marco de 20 pies, reutilizable y multimodal, para líquidos a granel peligrosos y no peligrosos.",
+    types: ["Multimodales", "Peligrosos y no peligrosos", "Acero inoxidable", "Calefacción opcional"],
+    detail: {
+      definition: "Tanque cilíndrico de acero inoxidable montado dentro de un marco estructural estándar de 20 pies, apto para transporte marítimo, ferroviario y por carretera.",
+      cargo: "Líquidos a granel, peligrosos (químicos, combustibles, ácidos, según la normativa IMDG) y no peligrosos, incluidos productos alimentarios.",
+      features: [
+        "Estructura reutilizable de acero inoxidable, con más de 20 años de vida útil.",
+        "Alta protección frente a impactos, fugas y condiciones climáticas extremas.",
+        "Aislamiento térmico y calefacción por vapor o eléctrica, según el modelo.",
+        "Un mismo equipo para barco, tren y camión, sin trasvasar la carga.",
+      ],
+      capacity: "De 21.000 a 26.000 litros.",
+    },
+    metaTitle: "ISO Tanks para líquidos y químicos a granel | Logística Cuyo",
+    metaDescription: "Contenedores cisterna ISO de 20 pies para transportar líquidos a granel, químicos peligrosos y productos alimentarios, con máxima seguridad.",
     images: [
-      { src: "/productos/isotanks-1-1110.webp", srcSet: "/productos/isotanks-1-640.webp 640w, /productos/isotanks-1-1110.webp 1110w", alt: "ISO tank de 20 pies con bastidor azul" },
+      img("isotanks-1", [640, 1110], "ISO tank de 20 pies con bastidor azul"),
     ],
   },
 ];
