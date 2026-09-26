@@ -7,6 +7,7 @@ import Contact from '@/components/sections/Contact';
 import Footer from '@/components/Footer';
 import WaFloat from '@/components/WaFloat';
 import SectionIndex from '@/components/SectionIndex';
+import LeadTracker from '@/components/LeadTracker';
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Footer />
       <WaFloat />
       <SectionIndex />
+      <LeadTracker />
     </>
   );
 }

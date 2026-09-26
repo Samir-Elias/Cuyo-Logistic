@@ -1,5 +1,6 @@
 import { PRODUCTS, Product } from '@/data/site';
 import { Skeleton } from '@/components/Skeleton';
+import ProductGallery from '@/components/ProductGallery';
 
 function ProductIcon({ id }: { id: string }) {
   if (id === 'flexitanks') return (
@@ -41,17 +42,7 @@ function Gallery({ p }: { p: Product }) {
       </div>
     );
   }
-  return (
-    <div className="pgal">
-      <div className="pgal-track" tabIndex={0} aria-label={`Fotos de ${p.title}`}>
-        {p.images.map((img, i) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img key={i} src={img.src} alt={img.alt} loading="lazy" decoding="async" />
-        ))}
-      </div>
-      {p.images.length > 1 && <span className="pgal-count">{p.images.length} fotos · deslizá →</span>}
-    </div>
-  );
+  return <ProductGallery p={p} />;
 }
 
 export default function Products() {
@@ -69,7 +60,8 @@ export default function Products() {
             hasta la descarga en destino.
           </p>
           <div className="partner-badge">
-            <span className="laf-monogram" aria-hidden="true">LAF</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/laf-logo.png" alt="LAF Technology" className="laf-logo" width={83} height={22} loading="lazy" />
             <div className="meta">
               <div className="l">Agente oficial LAF</div>
               <div className="v">Argentina · Chile · Uruguay · Paraguay</div>

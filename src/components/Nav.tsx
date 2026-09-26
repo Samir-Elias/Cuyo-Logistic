@@ -41,7 +41,8 @@ export default function Nav() {
           <a href="#top" className="nav-brand" aria-label={`${SITE.brand} — inicio`}>
             {SITE.logo ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={SITE.logo} alt={SITE.brand} className="logo" />
+              <img src={SITE.logo} alt={SITE.brand} className="logo"
+                   width={Math.round(34 * SITE.logoRatio)} height={34} fetchPriority="high" />
             ) : (
               <>
                 <span className="mark">{SITE.monogram}</span>

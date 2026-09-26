@@ -18,9 +18,9 @@ export default function Footer() {
 
         <div className="cols">
           <div className="col">
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 600, marginBottom: 12, letterSpacing: '-.01em' }}>
-              Logística Cuyo S.A.
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={SITE.logoDark} alt="Logística Cuyo S.A." className="foot-logo"
+                 width={Math.round(40 * SITE.logoRatio)} height={40} loading="lazy" />
             <div style={{ color: 'rgba(255,255,255,.65)', maxWidth: '36ch', lineHeight: 1.55, fontSize: 14.5 }}>
               {SITE.tagline} Desde el año {SITE.since}.
               Sede central en Mendoza, Argentina.
@@ -67,7 +67,7 @@ export default function Footer() {
             <ul>
               <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
               <li><a href={`tel:+${SITE.phoneE164}`}>{SITE.phoneDisplay}</a></li>
-              <li><a href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp {SITE.whatsappDisplay}</a></li>
+              <li><a href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
               <li style={{ color: 'rgba(255,255,255,.6)' }}>{SITE.address}</li>
             </ul>
           </div>

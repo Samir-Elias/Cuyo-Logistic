@@ -2,21 +2,23 @@ export const SITE = {
   brand: "Logística Cuyo",
   shortBrand: "Cuyo",
   monogram: "LC",
-  // Poner el logo en /public (ej: /logo.svg) y completar esta ruta. Mientras esté vacío se muestra el monograma.
-  logo: "",
+  // Logo (SVG en /public). Vacío = se muestra el monograma.
+  // Alternativa de ícono lista para probar: "/logo-alt-c.svg" y "/logo-alt-c-dark.svg".
+  logo: "/logo.svg",
+  logoDark: "/logo-dark.svg",
+  logoRatio: 7254 / 1140,
   tagline: "Empaque inteligente, logística sin retorno.",
   since: 2000,
-  phoneE164: "5492612455281",
-  phoneDisplay: "+54 9 261 245-5281",
-  whatsappE164: "5492615372590",
-  whatsappDisplay: "+54 9 2615 37-2590",
+  // Mismo número para teléfono y WhatsApp.
+  phoneE164: "5492615372590",
+  phoneDisplay: "+54 9 2615 37-2590",
   email: "info@logisticacuyo.com.ar",
   address: "Carril Urquiza 1850, Mendoza, Argentina",
   whatsappText: "Hola, me gustaría consultar sobre sus servicios logísticos.",
 };
 
 export const waLink = (text: string = SITE.whatsappText) =>
-  `https://wa.me/${SITE.whatsappE164}?text=${encodeURIComponent(text)}`;
+  `https://wa.me/${SITE.phoneE164}?text=${encodeURIComponent(text)}`;
 
 export const NAV_ITEMS = [
   { id: "productos",  label: "Productos" },
@@ -55,7 +57,8 @@ export interface Product {
   desc: string;
   types: string[];
   // Fotos del producto. Vacío = galería en mantenimiento (skeleton).
-  images: { src: string; alt: string }[];
+  images: { src: string; srcSet?: string; alt: string }[];
+  photoCredit?: string;
 }
 
 export const PRODUCTS: Product[] = [
@@ -68,7 +71,14 @@ export const PRODUCTS: Product[] = [
     short: "Flexitanks · todos los tipos",
     desc: "Bolsas flexibles para transportar líquidos no peligrosos dentro de un contenedor de 20'. Trabajamos todos los tipos según producto, volumen y forma de descarga.",
     types: ["Monocapa y multicapa", "Food grade", "Carga y descarga superior o inferior", "Con sistema de calefacción"],
-    images: [],
+    images: [
+      { src: "/productos/flexitanks-1-1280.webp", srcSet: "/productos/flexitanks-1-640.webp 640w, /productos/flexitanks-1-1280.webp 1280w", alt: "Operario conectando la manguera de descarga a un flexitank en un contenedor de 20 pies" },
+      { src: "/productos/flexitanks-2-1280.webp", srcSet: "/productos/flexitanks-2-640.webp 640w, /productos/flexitanks-2-1280.webp 1280w", alt: "Instalación de un flexitank dentro de un contenedor" },
+      { src: "/productos/flexitanks-3-1280.webp", srcSet: "/productos/flexitanks-3-640.webp 640w, /productos/flexitanks-3-1280.webp 1280w", alt: "Flexitank lleno dentro de un contenedor" },
+      { src: "/productos/flexitanks-4-1280.webp", srcSet: "/productos/flexitanks-4-640.webp 640w, /productos/flexitanks-4-1280.webp 1280w", alt: "Camión transportando un contenedor con flexitank en el puerto" },
+      { src: "/productos/flexitanks-5-1280.webp", srcSet: "/productos/flexitanks-5-640.webp 640w, /productos/flexitanks-5-1280.webp 1280w", alt: "Control de calidad de un flexitank food grade" },
+    ],
+    photoCredit: "LAF Technology",
   },
   {
     id: "ibc",
@@ -79,7 +89,14 @@ export const PRODUCTS: Product[] = [
     short: "IBC · contenedores intermedios",
     desc: "Contenedores intermedios para graneles líquidos en volúmenes parciales. Ideales para consolidar cargas y para distribución.",
     types: ["Food grade y no food", "IBC de cartón", "Liners para IBC", "Consolidación de cargas"],
-    images: [],
+    images: [
+      { src: "/productos/ibc-1-806.webp", srcSet: "/productos/ibc-1-640.webp 640w, /productos/ibc-1-806.webp 806w", alt: "IBC de cartón apilados sobre pallets en depósito" },
+      { src: "/productos/ibc-2-1180.webp", srcSet: "/productos/ibc-2-640.webp 640w, /productos/ibc-2-1180.webp 1180w", alt: "Contenedor cargado con IBC de cartón listos para exportar" },
+      { src: "/productos/ibc-3-800.webp", srcSet: "/productos/ibc-3-640.webp 640w, /productos/ibc-3-800.webp 800w", alt: "Operario preparando un IBC de cartón sobre pallet" },
+      { src: "/productos/ibc-4-1280.webp", srcSet: "/productos/ibc-4-640.webp 640w, /productos/ibc-4-1280.webp 1280w", alt: "Liner interior para IBC" },
+      { src: "/productos/ibc-5-640.webp", srcSet: "/productos/ibc-5-640.webp 640w", alt: "IBC de cartón sobre pallet plástico" },
+    ],
+    photoCredit: "LAF Technology",
   },
   {
     id: "bigbag",

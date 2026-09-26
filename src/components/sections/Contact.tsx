@@ -3,6 +3,7 @@
 import { FormEvent, useState } from 'react';
 import { SITE, waLink } from '@/data/site';
 import { WaIcon } from '@/components/icons';
+import { trackLead } from '@/lib/leads';
 
 function MailIcon() {
   return (
@@ -54,6 +55,10 @@ export default function Contact() {
       message,
     ].filter(l => l !== null).join('\n');
 
+    // Queda registrado (planilla / email) antes de abrir WhatsApp.
+    trackLead({ channel: 'form', source: 'formulario', name, email, phone, service, message,
+      website: (fd.get('website') as string) || '' });
+
     const url = waLink(lines);
     window.open(url, '_blank', 'noopener,noreferrer');
     setLoading(false);
@@ -70,8 +75,8 @@ export default function Contact() {
             <div className="eyebrow" style={{ marginBottom: 16 }}>CONTACTO</div>
             <h2>Dejanos<br />tu consulta.</h2>
             <p className="lede">
-              Cotizamos en menos de 48hs hábiles. Si necesitás respuesta
-              inmediata, escribinos directo por WhatsApp.
+              Contanos qué necesitás transportar y te preparamos una propuesta.
+              Si necesitás respuesta inmediata, escribinos directo por WhatsApp.
             </p>
 
             <a href={waUrl} target="_blank" rel="noopener noreferrer"
@@ -90,22 +95,17 @@ export default function Contact() {
               <div className="ch">
                 <div className="ico"><PhoneIcon /></div>
                 <div className="meta">
-                  <div className="l">Teléfono</div>
-                  <div className="v">{SITE.phoneDisplay}</div>
-                </div>
-              </div>
-              <div className="ch">
-                <div className="ico"><WaIcon size={16} /></div>
-                <div className="meta">
-                  <div className="l">WhatsApp directo</div>
-                  <div className="v"><a href={waUrl} target="_blank" rel="noopener noreferrer">{SITE.whatsappDisplay}</a></div>
+                  <div className="l">Teléfono · WhatsApp</div>
+                  <div className="v">
+                    <a href={`tel:+${SITE.phoneE164}`}>{SITE.phoneDisplay}</a>
+                  </div>
                 </div>
               </div>
               <div className="ch">
                 <div className="ico"><MailIcon /></div>
                 <div className="meta">
                   <div className="l">Email</div>
-                  <div className="v">{SITE.email}</div>
+                  <div className="v"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></div>
                 </div>
               </div>
             </div>
@@ -116,12 +116,18 @@ export default function Contact() {
               <div className="contact-form form-success">
                 <div className="icon">✓</div>
                 <div className="title">¡Recibido!</div>
-                <div className="desc">Te respondemos en menos de 48hs hábiles.</div>
+                <div className="desc">Se abrió WhatsApp con tu consulta: tocá “Enviar” para que nos llegue.</div>
               </div>
             ) : (
               <form className="contact-form" onSubmit={handleSubmit}>
                 <h3>Cotizá tu operación</h3>
                 <p className="sub">Contanos tu producto, volumen y destino. Te respondemos con propuesta.</p>
+
+                {/* Campo trampa para bots: invisible para personas. */}
+                <div className="hp-field" aria-hidden="true">
+                  <label htmlFor="f-website">No completar</label>
+                  <input id="f-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                </div>
 
                 <div className="form-grid">
                   <div className="field">
@@ -154,8 +160,8 @@ export default function Contact() {
                 </div>
 
                 <div className="submit">
-                  <div className="legal">Al enviar aceptás que te contactemos por email o teléfono.</div>
-                    <button type="submit" className="btn btn-accent btn-lg" disabled={loading}>
+                  <div className="legal">Al enviar, tu consulta queda registrada y aceptás que te contactemos por email, teléfono o WhatsApp.</div>
+                  <button type="submit" className="btn btn-accent btn-lg" disabled={loading}>
                     {loading ? 'Enviando…' : <>Enviar consulta <span className="arrow">→</span></>}
                   </button>
                 </div>
