@@ -72,6 +72,7 @@ export const PRODUCTS: Product[] = [
     desc: "Bolsas flexibles para transportar líquidos no peligrosos dentro de un contenedor de 20'. Trabajamos todos los tipos según producto, volumen y forma de descarga.",
     types: ["Monocapa y multicapa", "Food grade", "Carga y descarga superior o inferior", "Con sistema de calefacción"],
     images: [
+      { src: "/productos/flexitanks-vino-1280.webp", srcSet: "/productos/flexitanks-vino-640.webp 640w, /productos/flexitanks-vino-1280.webp 1280w", alt: "Flexitank para vino a granel dentro de un contenedor de 20 pies" },
       { src: "/productos/flexitanks-1-1280.webp", srcSet: "/productos/flexitanks-1-640.webp 640w, /productos/flexitanks-1-1280.webp 1280w", alt: "Operario conectando la manguera de descarga a un flexitank en un contenedor de 20 pies" },
       { src: "/productos/flexitanks-2-1280.webp", srcSet: "/productos/flexitanks-2-640.webp 640w, /productos/flexitanks-2-1280.webp 1280w", alt: "Instalación de un flexitank dentro de un contenedor" },
       { src: "/productos/flexitanks-3-1280.webp", srcSet: "/productos/flexitanks-3-640.webp 640w, /productos/flexitanks-3-1280.webp 1280w", alt: "Flexitank lleno dentro de un contenedor" },
@@ -118,7 +119,9 @@ export const PRODUCTS: Product[] = [
     short: "ISO tanks · cisternas multimodales",
     desc: "Cisternas multimodales para líquidos que requieren mayor protección: químicos y alimentos sensibles. Aptas para transporte marítimo, ferroviario y por carretera.",
     types: ["Multimodales", "Químicos y alimentos", "Calefacción opcional", "Tanqueras propias"],
-    images: [],
+    images: [
+      { src: "/productos/isotanks-1-1110.webp", srcSet: "/productos/isotanks-1-640.webp 640w, /productos/isotanks-1-1110.webp 1110w", alt: "ISO tank de 20 pies con bastidor azul" },
+    ],
   },
 ];
 
