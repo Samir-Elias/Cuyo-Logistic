@@ -6,7 +6,7 @@ export const SITE = {
   // Alternativa de ícono lista para probar: "/logo-alt-c.svg" y "/logo-alt-c-dark.svg".
   logo: "/logo.svg",
   logoDark: "/logo-dark.svg",
-  logoRatio: 7254 / 1140,
+  logoRatio: 6.2222,
   tagline: "Empaque inteligente, logística sin retorno.",
   since: 2000,
   // Mismo número para teléfono y WhatsApp.
