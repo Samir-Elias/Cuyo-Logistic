@@ -25,15 +25,15 @@ export default function Presence() {
                     <div className="depot-country">{c.name}</div>
                     <div className="depot-items">
                       {depots.map(d => (
-                        <span key={d.name} className={`depot-chip${d.hq ? ' hq' : ''}`}>
+                        <span key={d.name} className={`depot-chip${d.hq ? ' hq' : ''}${d.provisional ? ' provisional' : ''}`}>
                           {d.name}{d.hq ? ' · Sede central' : ''}
                         </span>
                       ))}
-                      {depots.filter(d => !d.hq).length === 0 && (
+                      {depots.filter(d => !d.hq && !d.provisional).length === 0 && (
                         <span className="depot-pending">
                           <Skeleton dark style={{ width: 64, height: 10 }} />
                           <Skeleton dark style={{ width: 44, height: 10 }} />
-                          <span>Depósitos en actualización</span>
+                          <span>Lista de depósitos en actualización</span>
                         </span>
                       )}
                     </div>

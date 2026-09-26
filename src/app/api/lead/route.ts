@@ -72,7 +72,8 @@ async function toSheet(lead: Lead) {
   const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ token: process.env.LEADS_SHEET_TOKEN || '', lead }),
+    // "site" permite que un mismo Apps Script reciba consultas de varias webs y las separe.
+    body: JSON.stringify({ token: process.env.LEADS_SHEET_TOKEN || '', site: 'logistica-cuyo', lead }),
     redirect: 'follow',
     signal: AbortSignal.timeout(10_000),
   });

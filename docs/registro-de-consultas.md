@@ -20,20 +20,26 @@ el sitio lo registra en `/api/lead`. Desde ahí se manda a los destinos que est�
 
 ## 1. Google Sheets (unos 5 minutos)
 
-1. Creá una planilla nueva en Google Sheets, por ejemplo “Consultas web Logística Cuyo”.
-2. Andá a **Extensiones → Apps Script**. Borrá lo que haya y pegá el contenido de [`scripts/google-apps-script-consultas.gs`](../scripts/google-apps-script-consultas.gs).
-3. En la línea `const TOKEN = '...'`, poné una clave larga inventada (ej. 30 letras y números al azar) y guardá.
+Se puede usar una planilla que ya exista (por ejemplo la de **Liquid Solutions**): las consultas de esta web van a una pestaña propia, **Logística Cuyo**, y el script de Liquid Solutions no se toca.
+
+1. Abrí la planilla y copiá su ID, el código largo de la URL: `docs.google.com/spreadsheets/d/ESTE_CODIGO/edit`.
+2. Entrá a [script.google.com](https://script.google.com) → **Nuevo proyecto** (un proyecto aparte, no el de Liquid Solutions). Nombralo por ejemplo “Consultas web Logística Cuyo”.
+3. Pegá el contenido de [`scripts/google-apps-script-consultas.gs`](../scripts/google-apps-script-consultas.gs) y completá:
+   - `TOKEN`: una clave larga inventada (ej. 30 letras y números al azar)
+   - `SPREADSHEET_ID`: el código del paso 1
 4. **Implementar → Nueva implementación** → tipo **Aplicación web**:
    - Ejecutar como: **Yo**
    - Quién tiene acceso: **Cualquier usuario**
-   - **Implementar**, autorizá los permisos y copiá la **URL de la aplicación web** (termina en `/exec`).
+   - **Implementar**, autorizá los permisos (acceso a tus planillas) y copiá la **URL de la aplicación web** (termina en `/exec`).
 5. En Vercel → proyecto → **Settings → Environment Variables** (entorno *Production*):
    - `LEADS_SHEET_WEBHOOK_URL` = la URL `/exec`
    - `LEADS_SHEET_TOKEN` = la misma clave del paso 3
-6. **Redeploy** del proyecto en Vercel para que tome las variables.
-7. Probá: abrí la web, tocá “WhatsApp directo”. En unos segundos aparece una fila en la hoja **Consultas**.
+6. **Redeploy** del proyecto en Vercel.
+7. Probá: abrí la web y tocá “WhatsApp directo”. En unos segundos aparece la pestaña **Logística Cuyo** con una fila.
 
-Si cambiás el código del Apps Script, hay que hacer **Implementar → Administrar implementaciones → Editar → Nueva versión**. Así la URL sigue siendo la misma.
+Si cambiás el código del script: **Implementar → Administrar implementaciones → Editar → Nueva versión**. Así se mantiene la misma URL.
+
+> ¿Preferís que un único script reciba las dos webs? Cada aviso de esta web trae `"site": "logistica-cuyo"`, así que el `doPost` existente puede separarlos por ese campo.
 
 ## 2. Aviso por email (opcional)
 

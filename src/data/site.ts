@@ -137,12 +137,19 @@ export interface Depot {
   lng: number;
   lat: number;
   hq?: boolean;
+  provisional?: boolean;   // ubicación de referencia hasta tener la lista real
+  labelSide?: 'left' | 'right';
 }
 
 // Depósitos que se marcan en el mapa. Completar con la lista que envíe el cliente
 // (coordenadas en grados decimales). Los países sin depósitos cargados muestran "en actualización".
 export const DEPOTS: Depot[] = [
   { name: "Mendoza", country: "AR", lng: -68.84, lat: -32.89, hq: true },
+  // Provisorio: capitales de cada país hasta recibir la lista de depósitos.
+  { name: "Buenos Aires", country: "AR", lng: -58.38, lat: -34.60, provisional: true, labelSide: "left" },
+  { name: "Santiago",     country: "CL", lng: -70.65, lat: -33.45, provisional: true, labelSide: "left" },
+  { name: "Montevideo",   country: "UY", lng: -56.16, lat: -34.90, provisional: true },
+  { name: "Asunción",     country: "PY", lng: -57.58, lat: -25.26, provisional: true },
 ];
 
 export const FAQS = [

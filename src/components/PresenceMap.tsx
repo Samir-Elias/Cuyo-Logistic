@@ -1,5 +1,5 @@
 // Server component: el mapa se calcula en el build y llega como SVG estático.
-import { geoMercator, geoPath } from 'd3-geo';
+import { geoTransverseMercator, geoPath } from 'd3-geo';
 import { feature } from 'topojson-client';
 import type { Topology, GeometryCollection } from 'topojson-specification';
 import type { FeatureCollection, Geometry } from 'geojson';
@@ -26,7 +26,9 @@ export default function PresenceMap() {
   const all = feature(topo, topo.objects.countries) as FeatureCollection<Geometry, { name: string }>;
   const feats = all.features.filter(f => CONTEXT_IDS.has(String(f.id)));
 
-  const projection = geoMercator().fitExtent(
+  // Mercator transversal centrada en 64°O (base de la cartografía oficial argentina):
+  // no estira la Patagonia como Mercator y respeta las proporciones norte-sur.
+  const projection = geoTransverseMercator().rotate([64, 0]).fitExtent(
     [[8, 8], [W - 8, H - 8]],
     { type: 'MultiPoint', coordinates: [[-82, -15], [-49, -15], [-82, -55.5], [-49, -55.5]] },
   ).clipExtent([[0, 0], [W, H]]); // descarta lo que queda fuera del recuadro (baja mucho el peso del SVG)
@@ -68,7 +70,8 @@ export default function PresenceMap() {
             <g key={`${d.country}-${d.name}`} transform={`translate(${x} ${y})`} className={d.hq ? 'pm-pin hq' : 'pm-pin'}>
               {d.hq && <circle r="14" className="pm-pulse" />}
               <circle r={d.hq ? 6 : 4.5} className="pm-dot" />
-              <text x={10} y={4} className="pm-pin-label">{d.name}{d.hq ? ' · Sede' : ''}</text>
+              <text x={d.labelSide === 'left' ? -10 : 10} y={4} textAnchor={d.labelSide === 'left' ? 'end' : 'start'}
+                    className="pm-pin-label">{d.name}{d.hq ? ' · Sede' : ''}</text>
             </g>
           );
         })}

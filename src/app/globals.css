@@ -569,3 +569,4 @@ footer.foot .foot-logo{display:block; height:40px; width:auto; max-width:100%; m
 .partner-badge{padding: 10px 18px 10px 16px}
 .partner-badge .laf-logo{height:22px; width:auto; display:block; flex-shrink:0}
 .partner-badge .laf-logo + .meta{padding-left: var(--space-3); border-left: 1px solid var(--hair)}
+.depot-chip.provisional{border-style:dashed; color: rgba(255,255,255,.72)}

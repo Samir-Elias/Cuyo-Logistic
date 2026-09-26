@@ -2,13 +2,17 @@
  * Registro de consultas de la web de Logística Cuyo → Google Sheets.
  *
  * Instalación: ver docs/registro-de-consultas.md
- * 1) Pegar este código en Extensiones → Apps Script de la planilla.
- * 2) Cambiar TOKEN por una clave larga (la misma que LEADS_SHEET_TOKEN en Vercel).
- * 3) Implementar → Nueva implementación → Aplicación web → Ejecutar como: Yo · Acceso: Cualquier usuario.
+ * Se puede usar como proyecto INDEPENDIENTE (script.google.com) que escribe en una planilla
+ * existente (por ejemplo la de Liquid Solutions), en su propia pestaña, sin tocar otros scripts.
+ * 1) Completar SPREADSHEET_ID (el código largo de la URL de la planilla) y TOKEN.
+ * 2) Implementar → Nueva implementación → Aplicación web → Ejecutar como: Yo · Acceso: Cualquier usuario.
  */
 
 const TOKEN = 'CAMBIAR-POR-UNA-CLAVE-LARGA';
-const SHEET_NAME = 'Consultas';
+// ID de la planilla: https://docs.google.com/spreadsheets/d/ESTE_CODIGO/edit
+// Si se deja vacío, usa la planilla a la que está vinculado el script.
+const SPREADSHEET_ID = '';
+const SHEET_NAME = 'Logística Cuyo';
 const TZ = 'America/Argentina/Mendoza';
 
 const HEADERS = [
@@ -31,7 +35,7 @@ function doPost(e) {
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
   try {
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const ss = SPREADSHEET_ID ? SpreadsheetApp.openById(SPREADSHEET_ID) : SpreadsheetApp.getActiveSpreadsheet();
     const sh = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
     if (sh.getLastRow() === 0) {
       sh.appendRow(HEADERS);
