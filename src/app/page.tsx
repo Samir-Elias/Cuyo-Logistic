@@ -1,12 +1,7 @@
 import Nav from '@/components/Nav';
 import Hero from '@/components/sections/Hero';
-import TrustStrip from '@/components/sections/TrustStrip';
-import Services from '@/components/sections/Services';
-import About from '@/components/sections/About';
-import Coverage from '@/components/sections/Coverage';
-import Team from '@/components/sections/Team';
 import Products from '@/components/sections/Products';
-import Fleet from '@/components/sections/Fleet';
+import Presence from '@/components/sections/Presence';
 import FAQ from '@/components/sections/FAQ';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/Footer';
@@ -18,13 +13,8 @@ export default function Home() {
     <>
       <Nav />
       <Hero />
-      <TrustStrip />
-      <Services />
-      <About />
-      <Coverage />
-      <Team />
       <Products />
-      <Fleet />
+      <Presence />
       <FAQ />
       <Contact />
       <Footer />

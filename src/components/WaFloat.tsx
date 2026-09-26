@@ -1,7 +1,7 @@
-import { SITE } from '@/data/site';
+import { waLink } from '@/data/site';
 
 export default function WaFloat() {
-  const url = `https://wa.me/${SITE.phoneE164}?text=${encodeURIComponent(SITE.whatsappText)}`;
+  const url = waLink();
   return (
     <a className="wa-float" href={url} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor">

@@ -8,8 +8,8 @@ export default function FAQ() {
           <div className="eyebrow" style={{ marginBottom: 16 }}>PREGUNTAS</div>
           <h2>Lo que más<br />nos consultan.</h2>
           <p style={{ color: 'var(--muted)', fontSize: 15.5, lineHeight: 1.55, marginTop: 24, maxWidth: '38ch' }}>
-            ¿No encontrás tu respuesta? Escribinos directo y te respondemos
-            en menos de 48hs hábiles.
+            ¿No encontrás tu respuesta? Escribinos directo y te
+            respondemos a la brevedad.
           </p>
           <a href="#contacto" className="btn btn-primary" style={{ marginTop: 20 }}>
             Hacé tu consulta <span className="arrow">→</span>

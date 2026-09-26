@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Logística Cuyo S.A. — Soluciones integrales para cargas exigentes',
+  title: 'Logística Cuyo — Empaque inteligente, logística sin retorno',
   description:
-    'Empresa mendocina especializada en transporte de líquidos a granel, alquiler y venta de contenedores, y módulos habitacionales Bunka. Operamos en 6 provincias y 2 países desde el año 2000.',
-  keywords: ['logística', 'transporte líquidos', 'flexitank', 'contenedores', 'módulos habitacionales', 'Mendoza', 'Bunka'],
+    'Transporte de graneles y graneles consolidados: flexitanks, IBC, big bags e ISO tanks. Agentes oficiales de LAF. Operamos desde Argentina, Chile, Uruguay y Paraguay hacia todo el mundo.',
+  keywords: ['logística', 'graneles', 'flexitank', 'IBC', 'big bag', 'ISO tank', 'LAF', 'Mendoza', 'Argentina', 'Chile', 'Uruguay', 'Paraguay'],
   openGraph: {
-    title: 'Logística Cuyo S.A.',
-    description: 'Soluciones integrales para cargas exigentes. Transporte de líquidos, contenedores y construcción modular.',
+    title: 'Logística Cuyo',
+    description: 'Empaque inteligente, logística sin retorno. Flexitanks, IBC, big bags e ISO tanks desde Argentina, Chile, Uruguay y Paraguay.',
     locale: 'es_AR',
     type: 'website',
   },

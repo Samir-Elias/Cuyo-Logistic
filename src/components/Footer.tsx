@@ -1,4 +1,4 @@
-import { SITE, SERVICES } from '@/data/site';
+import { SITE, PRODUCTS, waLink } from '@/data/site';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="marquee-track">
             {Array.from({ length: 6 }).map((_, i) => (
               <span key={i}>
-                LOGÍSTICA · CUYO · ARGENTINA
+                LOGÍSTICA · CUYO · AR · CL · UY · PY
                 <span className="dot"></span>
               </span>
             ))}
@@ -22,7 +22,7 @@ export default function Footer() {
               Logística Cuyo S.A.
             </div>
             <div style={{ color: 'rgba(255,255,255,.65)', maxWidth: '36ch', lineHeight: 1.55, fontSize: 14.5 }}>
-              Soluciones integrales para cargas exigentes desde el año {SITE.since}.
+              {SITE.tagline} Desde el año {SITE.since}.
               Sede central en Mendoza, Argentina.
             </div>
             <div style={{ display: 'flex', gap: 10, marginTop: 24 }}>
@@ -33,7 +33,7 @@ export default function Footer() {
                   <path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9.5h4V21H3zM10 9.5h3.83v1.57h.05c.53-.95 1.84-1.95 3.78-1.95 4.04 0 4.79 2.5 4.79 5.76V21h-4v-5.16c0-1.23-.02-2.82-1.85-2.82-1.85 0-2.13 1.34-2.13 2.73V21h-4z" />
                 </svg>
               </a>
-              <a href={`https://wa.me/${SITE.phoneE164}`} target="_blank" rel="noopener noreferrer"
+              <a href={waLink()} target="_blank" rel="noopener noreferrer"
                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 40, height: 40, border: '1px solid rgba(255,255,255,.2)', borderRadius: 'var(--radius)' }}
                  aria-label="WhatsApp">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -44,10 +44,10 @@ export default function Footer() {
           </div>
 
           <div className="col">
-            <h4>Servicios</h4>
+            <h4>Productos</h4>
             <ul>
-              {SERVICES.map(s => (
-                <li key={s.id}><a href={`#${s.id}`}>{s.short}</a></li>
+              {PRODUCTS.map(s => (
+                <li key={s.id}><a href={`#${s.id}`}>{s.title}</a></li>
               ))}
             </ul>
           </div>
@@ -55,10 +55,10 @@ export default function Footer() {
           <div className="col">
             <h4>Empresa</h4>
             <ul>
-              <li><a href="#empresa">Nuestra empresa</a></li>
-              <li><a href="#cobertura">Cobertura</a></li>
-              <li><a href="#flota">Flota</a></li>
-              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#presencia">Presencia internacional</a></li>
+              <li><a href="#productos">Productos</a></li>
+              <li><a href="#faq">Preguntas frecuentes</a></li>
+              <li><a href="#contacto">Contacto</a></li>
             </ul>
           </div>
 
@@ -67,6 +67,7 @@ export default function Footer() {
             <ul>
               <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
               <li><a href={`tel:+${SITE.phoneE164}`}>{SITE.phoneDisplay}</a></li>
+              <li><a href={waLink()} target="_blank" rel="noopener noreferrer">WhatsApp {SITE.whatsappDisplay}</a></li>
               <li style={{ color: 'rgba(255,255,255,.6)' }}>{SITE.address}</li>
             </ul>
           </div>

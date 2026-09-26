@@ -4,12 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 
 const ITEMS = [
   { id: 'top',       label: 'Inicio' },
-  { id: 'servicios', label: 'Qué hacemos' },
-  { id: 'empresa',   label: 'Empresa' },
-  { id: 'depositos', label: 'Depósitos' },
-  { id: 'equipo',    label: 'Equipo' },
   { id: 'productos', label: 'Productos' },
-  { id: 'flota',     label: 'Flota' },
+  { id: 'presencia', label: 'Presencia' },
   { id: 'faq',       label: 'FAQ' },
   { id: 'contacto',  label: 'Contacto' },
 ];
@@ -32,7 +28,7 @@ export default function SectionIndex() {
         if (top <= mid) current = it.id;
       }
 
-      const empresaEl = document.getElementById('empresa');
+      const empresaEl = document.getElementById('presencia');
       if (empresaEl) {
         const r = empresaEl.getBoundingClientRect();
         if (r.top < window.innerHeight * 0.5 && r.bottom > window.innerHeight * 0.5) isDark = true;

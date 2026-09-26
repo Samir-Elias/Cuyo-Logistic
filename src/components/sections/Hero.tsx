@@ -1,47 +1,16 @@
-'use client';
-
-import { useEffect } from 'react';
-import { SITE, STATS, HERO_IMAGE } from '@/data/site';
-
-function WaIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M19.05 4.91A10 10 0 0 0 4.06 18.4L2 22l3.69-1.02a10 10 0 0 0 13.36-13.07ZM12 20.13a8.06 8.06 0 0 1-4.11-1.13l-.3-.18-2.19.6.59-2.14-.19-.31a8.07 8.07 0 1 1 6.2 3.16Zm4.42-5.97c-.24-.12-1.43-.71-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.21-1.43-1.35-1.67-.14-.24-.01-.37.1-.49.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.16 1.51.1.46-.07 1.43-.58 1.63-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" />
-    </svg>
-  );
-}
+import { SITE, STATS, waLink } from '@/data/site';
+import HeroMedia from '@/components/HeroMedia';
+import { WaIcon } from '@/components/icons';
 
 export default function Hero() {
-  useEffect(() => {
-    const l = document.createElement('link');
-    l.rel = 'preload';
-    l.as = 'image';
-    l.href = HERO_IMAGE.src;
-    (l as HTMLLinkElement & { fetchPriority: string }).fetchPriority = 'high';
-    document.head.appendChild(l);
-    return () => l.remove();
-  }, []);
-
-  const waUrl = `https://wa.me/${SITE.phoneE164}?text=${encodeURIComponent(SITE.whatsappText)}`;
-
   return (
     <section className="hero-photo" id="top">
-      <div className="bgimg">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={HERO_IMAGE.src}
-          alt={HERO_IMAGE.alt}
-          loading="eager"
-          fetchPriority="high"
-        />
-      </div>
+      <HeroMedia />
       <div className="content">
         <div className="eyebrow">MENDOZA · DESDE EL AÑO {SITE.since}</div>
         <h1>
           Empaque inteligente,<br />
-          <span style={{ fontStyle: 'italic', fontFamily: "'Instrument Serif', serif", fontWeight: 400, color: '#d9ad6c' }}>
-            logística sin retorno.
-          </span>
+          <span className="hero-accent">logística sin retorno.</span>
         </h1>
         <p className="sub">
           Transporte de graneles y graneles consolidados. Desde la elección
@@ -51,7 +20,7 @@ export default function Hero() {
           <a href="#contacto" className="btn btn-primary btn-lg">
             Cotizar y consultar <span className="arrow">→</span>
           </a>
-          <a href={waUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-lg">
+          <a href={waLink()} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-lg">
             <WaIcon /> WhatsApp directo
           </a>
         </div>
