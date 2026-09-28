@@ -89,7 +89,7 @@ export const PRODUCTS: Product[] = [
     subtitle: "Flexibag para contenedor",
     short: "Flexitanks · todos los tipos",
     desc: "Bolsa flexible que convierte un contenedor seco de 20 pies en un tanque para líquidos no peligrosos. De un solo uso: sin limpieza ni flete de retorno.",
-    types: ["Monocapa y multicapa", "Food grade", "Carga y descarga superior o inferior", "Con sistema de calefacción"],
+    types: ["Monocapa y multicapa", "Food grade", "Válvula mariposa o esférica", "Con sistema de calefacción"],
     detail: {
       definition: "Bolsa flexible, monocapa o multicapa, de polietileno con cubierta de polipropileno tejido, que convierte un contenedor marítimo seco estándar de 20 pies en un tanque para líquidos.",
       cargo: "Líquidos no peligrosos, alimentarios e industriales: aceites vegetales, vinos, jugos concentrados, agua potable, glicerina y látex.",
@@ -97,7 +97,7 @@ export const PRODUCTS: Product[] = [
         "De un solo uso: sin costos de limpieza ni flete de retorno del envase vacío.",
         "Usa contenedores dry estándar, disponibles en cualquier puerto del mundo.",
         "Menor costo de embalaje y más carga útil que tambores o IBC.",
-        "Versiones food grade, con válvula superior o inferior y con sistema de calefacción.",
+        "Versiones food grade, para alta temperatura y con sistema de calefacción.",
       ],
       capacity: "De 16.000 a 24.000 litros por flexitank.",
     },
@@ -184,7 +184,7 @@ export const PRODUCTS: Product[] = [
     types: ["Multimodales", "Peligrosos y no peligrosos", "Acero inoxidable", "Calefacción opcional"],
     detail: {
       definition: "Tanque cilíndrico de acero inoxidable montado dentro de un marco estructural estándar de 20 pies, apto para transporte marítimo, ferroviario y por carretera.",
-      cargo: "Líquidos a granel, peligrosos (químicos, combustibles, ácidos, según la normativa IMDG) y no peligrosos, incluidos productos alimentarios.",
+      cargo: "Líquidos a granel, peligrosos (químicos y combustibles, según la normativa IMDG) y no peligrosos, incluidos productos alimentarios.",
       features: [
         "Estructura reutilizable de acero inoxidable, con más de 20 años de vida útil.",
         "Alta protección frente a impactos, fugas y condiciones climáticas extremas.",
@@ -220,36 +220,48 @@ export interface Depot {
   labelSide?: 'left' | 'right';
 }
 
-// Depósitos que se marcan en el mapa. Completar con la lista que envíe el cliente
-// (coordenadas en grados decimales). Los países sin depósitos cargados muestran "en actualización".
+// Depósitos que se marcan en el mapa (coordenadas en grados decimales).
+// provisional: true muestra la ubicación con borde punteado y el aviso "lista en actualización".
 export const DEPOTS: Depot[] = [
   { name: "Mendoza", country: "AR", lng: -68.84, lat: -32.89, hq: true },
-  // Provisorio: capitales de cada país hasta recibir la lista de depósitos.
-  { name: "Buenos Aires", country: "AR", lng: -58.38, lat: -34.60, provisional: true, labelSide: "left" },
-  { name: "Santiago",     country: "CL", lng: -70.65, lat: -33.45, provisional: true, labelSide: "left" },
-  { name: "Montevideo",   country: "UY", lng: -56.16, lat: -34.90, provisional: true },
-  { name: "Asunción",     country: "PY", lng: -57.58, lat: -25.26, provisional: true },
+  // Capitales de cada país (el cliente confirmará o actualizará la lista de depósitos).
+  { name: "Buenos Aires", country: "AR", lng: -58.38, lat: -34.60, labelSide: "left" },
+  { name: "Santiago",     country: "CL", lng: -70.65, lat: -33.45, labelSide: "left" },
+  { name: "Montevideo",   country: "UY", lng: -56.16, lat: -34.90 },
+  { name: "Asunción",     country: "PY", lng: -57.58, lat: -25.26 },
 ];
 
 export const FAQS = [
   {
-    q: "¿Qué tipos de carga manejan en flexitanks?",
-    a: "Operamos líquidos no peligrosos: aceites vegetales, vinos a granel, jugos concentrados, base de glicerina y otros foodgrade. Para químicos clase II y III utilizamos isotanques homologados IMO.",
+    "q": "¿Qué envase conviene para mi carga?",
+    "a": "Depende del producto y del volumen. Para grandes volúmenes de líquidos no peligrosos, el flexitank convierte un contenedor de 20 pies en un tanque de 16.000 a 24.000 litros. Para envíos parciales o cargas consolidadas, el IBC, de alrededor de 1.000 litros. Para líquidos peligrosos o que requieren control de temperatura o presión, el ISO tank. Para graneles sólidos, como granos o minerales, los big bags. Si tenés dudas, te asesoramos en la elección."
   },
   {
-    q: "¿Desde qué países operan?",
-    a: "Operamos desde Argentina, Chile, Uruguay y Paraguay hacia todo el mundo. Contamos con equipos propios y asistencia técnica en cada origen.",
+    "q": "¿Qué productos se pueden transportar en flexitanks?",
+    "a": "Líquidos no peligrosos, alimentarios e industriales: vino a granel, aceites vegetales, jugos concentrados, agua potable, glicerina, látex, fertilizantes y químicos no peligrosos, entre otros. Los líquidos peligrosos se transportan en ISO tanks."
   },
   {
-    q: "¿Ofrecen asesoramiento técnico?",
-    a: "Sí. Nuestro equipo técnico brinda soporte tecnológico y científico para trasladar tu producto, y el equipo operativo asiste a la carga y a la descarga en destino.",
+    "q": "¿Trabajan con productos food grade y con químicos?",
+    "a": "Sí. Hay flexitanks y liners para IBC en versión food grade, y los ISO tanks también se usan para alimentos líquidos. En químicos, el envase depende del producto: los no peligrosos pueden ir en flexitank y los peligrosos van en ISO tank, según la normativa IMDG. Si tu producto necesita temperatura controlada, hay flexitanks con sistema de calefacción e ISO tanks con aislamiento térmico y calefacción."
   },
   {
-    q: "¿En qué puertos operan?",
-    a: "Despachamos principalmente desde Buenos Aires, Rosario, Valparaíso (Chile), Montevideo (Uruguay) y puertos paraguayos. Coordinamos toda la cadena logística: planta del cliente, ruta terrestre, consolidación, despacho aduanero y embarque.",
+    "q": "¿Qué significa «logística sin retorno»?",
+    "a": "Que el envase no vuelve vacío a origen. El flexitank y el IBC de cartón son de un solo uso: no hay que limpiarlos ni pagar el flete de retorno. Además, el flexitank viaja en contenedores dry estándar, que hay en cualquier puerto del mundo."
   },
   {
-    q: "¿Cómo se cotiza una operación?",
-    a: "Necesitamos: producto, volumen, origen-destino, fecha tentativa y especificaciones técnicas (temperatura, certificación foodgrade, etc.).",
+    "q": "¿Desde qué países operan?",
+    "a": "Operamos desde Argentina, Chile, Uruguay y Paraguay hacia todo el mundo, con equipos propios. Nuestra sede está en Mendoza y trabajamos junto a exportadores, importadores y compañías marítimas."
   },
+  {
+    "q": "¿Qué relación tienen con LAF Technology?",
+    "a": "Somos agente oficial de LAF Technology en Argentina, Chile, Uruguay y Paraguay, y trabajamos en conjunto con ellos en flexitanks e IBC."
+  },
+  {
+    "q": "¿Ofrecen asesoramiento técnico?",
+    "a": "Sí. Te acompañamos desde la elección del contenedor hasta que la carga llega a destino: te asesoramos sobre el envase adecuado, nos ocupamos de la carga y la logística cuidando la calidad del producto, y brindamos asistencia técnica y asesoramiento para la descarga."
+  },
+  {
+    "q": "¿Cómo se cotiza una operación?",
+    "a": "Necesitamos: producto, volumen, origen-destino, fecha tentativa y especificaciones técnicas (temperatura, certificación foodgrade, etc.)."
+  }
 ];

@@ -160,7 +160,7 @@ export default function Contact() {
                 </div>
 
                 <div className="submit">
-                  <div className="legal">Al enviar, tu consulta queda registrada y aceptás que te contactemos por email, teléfono o WhatsApp.</div>
+                  <div className="legal">Al enviar, tu consulta queda registrada y aceptás que te contactemos por email, teléfono o WhatsApp. Ver <a href="/privacidad">política de privacidad</a>.</div>
                   <button type="submit" className="btn btn-accent btn-lg" disabled={loading}>
                     {loading ? 'Enviando…' : <>Enviar consulta <span className="arrow">→</span></>}
                   </button>

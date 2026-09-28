@@ -68,6 +68,9 @@ function Dialog({ p }: { p: Product }) {
               Completar formulario <span className="arrow">→</span>
             </a>
           </div>
+          <a href={`/productos/${p.id}`} className="pmodal-more">
+            Ver ficha completa: cómo funciona, aplicaciones y datos técnicos <span>→</span>
+          </a>
         </div>
       </div>
     </dialog>

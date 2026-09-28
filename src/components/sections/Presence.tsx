@@ -29,7 +29,7 @@ export default function Presence() {
                           {d.name}{d.hq ? ' · Sede central' : ''}
                         </span>
                       ))}
-                      {depots.filter(d => !d.hq && !d.provisional).length === 0 && (
+                      {depots.some(d => d.provisional) && (
                         <span className="depot-pending">
                           <Skeleton dark style={{ width: 64, height: 10 }} />
                           <Skeleton dark style={{ width: 44, height: 10 }} />

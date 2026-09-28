@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { SITE_URL } from '@/lib/site-url';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: '/' },
   title: 'Logística Cuyo — Empaque inteligente, logística sin retorno',
   description:
     'Transporte de graneles y graneles consolidados: flexitanks, IBC, big bags e ISO tanks. Agentes oficiales de LAF. Operamos desde Argentina, Chile, Uruguay y Paraguay hacia todo el mundo.',
@@ -11,6 +14,8 @@ export const metadata: Metadata = {
     description: 'Empaque inteligente, logística sin retorno. Flexitanks, IBC, big bags e ISO tanks desde Argentina, Chile, Uruguay y Paraguay.',
     locale: 'es_AR',
     type: 'website',
+    siteName: 'Logística Cuyo',
+    url: '/',
   },
   twitter: { card: 'summary_large_image' },
 };

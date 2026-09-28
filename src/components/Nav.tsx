@@ -17,11 +17,14 @@ export default function Nav() {
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      const a = (e.target as Element).closest('a[href^="#"]') as HTMLAnchorElement | null;
+      // Links '#id' y '/#id': si la sección existe en esta página, scroll suave; si no, navegación normal.
+      const a = (e.target as Element).closest('a[href^="#"], a[href^="/#"]') as HTMLAnchorElement | null;
       if (!a) return;
-      const href = a.getAttribute('href');
-      if (!href || href.length < 2) return;
-      const el = document.querySelector(href);
+      const raw = a.getAttribute('href') || '';
+      if (raw.startsWith('/#') && location.pathname !== '/') return;
+      const href = raw.startsWith('/') ? raw.slice(1) : raw;
+      if (href.length < 2) return;
+      const el = document.getElementById(href.slice(1));
       if (!el) return;
       e.preventDefault();
       const y = el.getBoundingClientRect().top + window.scrollY - 72;
@@ -38,7 +41,7 @@ export default function Nav() {
     <>
       <nav className="nav" style={scrolled ? { boxShadow: '0 1px 0 var(--hair)' } : {}}>
         <div className="nav-inner">
-          <a href="#top" className="nav-brand" aria-label={`${SITE.brand} — inicio`}>
+          <a href="/#top" className="nav-brand" aria-label={`${SITE.brand} — inicio`}>
             {SITE.logo ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={SITE.logo} alt={SITE.brand} className="logo"
@@ -53,7 +56,7 @@ export default function Nav() {
 
           <div className="nav-links">
             {NAV_ITEMS.map(n => (
-              <a key={n.id} href={`#${n.id}`}>{n.label}</a>
+              <a key={n.id} href={`/#${n.id}`}>{n.label}</a>
             ))}
           </div>
 
@@ -62,7 +65,7 @@ export default function Nav() {
                className="btn btn-ghost" style={{ padding: '10px 16px', fontSize: 13 }}>
               <WaIcon /> WhatsApp
             </a>
-            <a href="#contacto" className="btn btn-primary nav-cta-main"
+            <a href="/#contacto" className="btn btn-primary nav-cta-main"
                style={{ padding: '10px 18px', fontSize: 13 }}>
               Cotizar <span className="arrow">→</span>
             </a>
@@ -75,10 +78,10 @@ export default function Nav() {
 
       <div className={`mobile-menu${open ? ' open' : ''}`}>
         {NAV_ITEMS.map(n => (
-          <a key={n.id} href={`#${n.id}`} onClick={() => setOpen(false)}>{n.label}</a>
+          <a key={n.id} href={`/#${n.id}`} onClick={() => setOpen(false)}>{n.label}</a>
         ))}
         <div className="ctas">
-          <a href="#contacto" onClick={() => setOpen(false)} className="btn btn-primary btn-lg">
+          <a href="/#contacto" onClick={() => setOpen(false)} className="btn btn-primary btn-lg">
             Cotizar <span className="arrow">→</span>
           </a>
           <a href={waUrl} target="_blank" rel="noopener noreferrer" className="btn btn-wa btn-lg">

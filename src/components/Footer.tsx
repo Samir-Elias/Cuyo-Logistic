@@ -26,13 +26,6 @@ export default function Footer() {
               Sede central en Mendoza, Argentina.
             </div>
             <div style={{ display: 'flex', gap: 10, marginTop: 24 }}>
-              <a href="https://www.linkedin.com/company/logistica-cuyo" target="_blank" rel="noopener noreferrer"
-                 style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 40, height: 40, border: '1px solid rgba(255,255,255,.2)', borderRadius: 'var(--radius)' }}
-                 aria-label="LinkedIn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9.5h4V21H3zM10 9.5h3.83v1.57h.05c.53-.95 1.84-1.95 3.78-1.95 4.04 0 4.79 2.5 4.79 5.76V21h-4v-5.16c0-1.23-.02-2.82-1.85-2.82-1.85 0-2.13 1.34-2.13 2.73V21h-4z" />
-                </svg>
-              </a>
               <a href={waLink()} target="_blank" rel="noopener noreferrer"
                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 40, height: 40, border: '1px solid rgba(255,255,255,.2)', borderRadius: 'var(--radius)' }}
                  aria-label="WhatsApp">
@@ -47,7 +40,7 @@ export default function Footer() {
             <h4>Productos</h4>
             <ul>
               {PRODUCTS.map(s => (
-                <li key={s.id}><a href={`#${s.id}`}>{s.title}</a></li>
+                <li key={s.id}><a href={`/productos/${s.id}`}>{s.title}</a></li>
               ))}
             </ul>
           </div>
@@ -55,10 +48,10 @@ export default function Footer() {
           <div className="col">
             <h4>Empresa</h4>
             <ul>
-              <li><a href="#presencia">Presencia internacional</a></li>
-              <li><a href="#productos">Productos</a></li>
-              <li><a href="#faq">Preguntas frecuentes</a></li>
-              <li><a href="#contacto">Contacto</a></li>
+              <li><a href="/#presencia">Presencia internacional</a></li>
+              <li><a href="/#productos">Productos</a></li>
+              <li><a href="/#faq">Preguntas frecuentes</a></li>
+              <li><a href="/#contacto">Contacto</a></li>
             </ul>
           </div>
 
@@ -75,7 +68,7 @@ export default function Footer() {
 
         <div className="legal">
           <span>© {year} Logística Cuyo S.A. — Todos los derechos reservados.</span>
-          <span>Mendoza · Argentina</span>
+          <span><a href="/privacidad">Política de privacidad</a> · Mendoza · Argentina</span>
         </div>
       </div>
     </footer>
