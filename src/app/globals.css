@@ -731,3 +731,6 @@ html:has(dialog.pmodal[open]){overflow:hidden}
   .pp-ctas .btn{flex: 1 1 auto; justify-content: center}
 }
 .pmodal .pgal-credit{right:auto; left:12px}
+
+/* .container pisa el padding vertical de section: se restituye el espacio superior */
+section.products, section.faq{padding-top: var(--section-pad-y)}
