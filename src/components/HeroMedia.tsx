@@ -13,7 +13,8 @@ const srcSet = (src: string) =>
     : undefined;
 
 export default function HeroMedia() {
-  const [active, setActive] = useState(0);
+  // step cuenta los cambios: la foto activa es step % n y la anterior queda debajo durante el fundido.
+  const [step, setStep] = useState(0);
   // Solo la primera foto va en el HTML inicial; el resto se agrega cuando la página ya cargó.
   const [extras, setExtras] = useState(false);
   const [useVideo, setUseVideo] = useState(false);
@@ -37,11 +38,13 @@ export default function HeroMedia() {
 
   useEffect(() => {
     if (!extras || videoReady || HERO_SLIDES.length < 2) return;
-    const t = setInterval(() => setActive(i => (i + 1) % HERO_SLIDES.length), SLIDE_MS);
+    const t = setInterval(() => setStep(n => n + 1), SLIDE_MS);
     return () => clearInterval(t);
   }, [extras, videoReady]);
 
   const slides = extras ? HERO_SLIDES : HERO_SLIDES.slice(0, 1);
+  const active = step % slides.length;
+  const prev = step > 0 ? (step - 1) % slides.length : -1;
 
   return (
     <div className="bgimg hero-media">
@@ -54,7 +57,7 @@ export default function HeroMedia() {
           sizes="100vw"
           alt={i === 0 ? s.alt : ''}
           aria-hidden={i === 0 ? undefined : true}
-          className={`slide${i === active ? ' on' : ''}`}
+          className={`slide${i === active ? ' on' : i === prev ? ' prev' : ''}`}
           loading={i === 0 ? 'eager' : 'lazy'}
           fetchPriority={i === 0 ? 'high' : 'low'}
           decoding="async"

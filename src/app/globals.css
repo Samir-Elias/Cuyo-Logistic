@@ -395,22 +395,26 @@ footer.foot .legal{margin-top: var(--space-7); padding-top: var(--space-4); bord
 
 /* ──────────────────────────────── hero media (carrusel / video) ──────────────────────────────── */
 .hero-accent{font-style:italic; font-family:"Instrument Serif", serif; font-weight:400; color: var(--accent-soft)}
+/* Fondo azul detrás de las fotos: la entrada y los cambios nunca pasan por el claro de la página.
+   La foto nueva (.on) aparece encima de la anterior (.prev), que sigue visible hasta que termina el fundido. */
+.hero-photo{background: var(--ink)}
+.hero-photo .hero-media{z-index:0; background: var(--ink); animation: lc-fade 1.2s ease-out both}
 .hero-photo .hero-media img.slide{
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-  opacity:0; transform: scale(1.08);
-  transition: opacity 1.6s ease; animation: none;
+  opacity:0; z-index:0; transform: scale(1.08);
+  transition: opacity 1.8s ease-in-out; animation: none;
 }
-.hero-photo .hero-media img.slide.on{opacity:1; animation: lc-kenburns 9s ease-out both}
-.hero-photo .hero-media img.slide:first-child.on{animation: lc-image-in 1.4s cubic-bezier(.2,.7,.2,1) both, lc-kenburns 9s ease-out both}
+.hero-photo .hero-media img.slide.on{opacity:1; z-index:2; animation: lc-kenburns 9s ease-out both}
+.hero-photo .hero-media img.slide.prev{opacity:1; z-index:1; transition:none; animation: lc-kenburns 9s ease-out both}
 .hero-photo .hero-media .hero-video{
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:3;
   opacity:0; transition: opacity 1.2s ease;
 }
 .hero-photo .hero-media .hero-video.on{opacity:1}
-.hero-photo .hero-media::after{z-index:1}
+.hero-photo .hero-media::after{z-index:4}
 @keyframes lc-kenburns{from{transform: scale(1)} to{transform: scale(1.08)}}
 @media (prefers-reduced-motion: reduce){
-  .hero-photo .hero-media img.slide, .hero-photo .hero-media img.slide.on{animation:none; transform:none; transition:none}
+  .hero-photo .hero-media, .hero-photo .hero-media img.slide, .hero-photo .hero-media img.slide.on{animation:none; transform:none; transition:none}
 }
 
 /* ──────────────────────────────── botones extra ──────────────────────────────── */
@@ -559,6 +563,16 @@ footer.foot .legal{margin-top: var(--space-7); padding-top: var(--space-4); bord
   .hero-photo .content > .eyebrow{margin-top:auto}
   .hero-photo .meta-strip{margin-top:auto}
   .hero-accent{font-family: var(--font-body); font-style: italic; font-weight: 600; letter-spacing: -.035em; color: #a9d3ff}
+  /* en laptops de poco alto el título también se ajusta al alto de la ventana */
+  .hero-photo h1{font-size: clamp(48px, min(8.5vw, 13vh), 132px)}
+}
+@media (min-width: 901px) and (max-height: 720px){
+  .hero-photo .content > .eyebrow{margin-bottom: 16px}
+  .hero-photo h1{margin-bottom: var(--space-4)}
+  .hero-photo .sub{margin-bottom: var(--space-3)}
+  .hero-photo .ctas{margin-top: var(--space-4)}
+  .hero-photo .meta-strip{padding-top: var(--space-4)}
+  .hero-photo .meta-strip .item .k{font-size: clamp(26px, 5vh, 36px)}
 }
 
 .pgal-credit{position:absolute; right:12px; top:12px; pointer-events:none; font-family: var(--font-mono); font-size: 9.5px; letter-spacing:.1em; text-transform: uppercase; color: rgba(255,255,255,.85); text-shadow: 0 1px 6px rgba(0,0,0,.6)}
@@ -680,7 +694,9 @@ html:has(dialog.pmodal[open]){overflow:hidden}
 .pp-head .eyebrow{margin-bottom: 12px}
 .pp-head h2{font-family: var(--font-display); font-weight: 600; font-size: clamp(28px, 3.4vw, 44px); letter-spacing: -.025em; line-height: 1.05; margin: 0; max-width: 24ch}
 
-.pp-steps{list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4)}
+.pp-steps{list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4)}
+@media (max-width: 1000px){.pp-steps{grid-template-columns: repeat(2, 1fr)}}
+@media (max-width: 560px){.pp-steps{grid-template-columns: 1fr}}
 .pp-steps li{position:relative; padding: var(--space-5); background: var(--surface); border:1px solid var(--hair); border-radius: var(--radius)}
 .pp-steps li::after{content:""; position:absolute; left: var(--space-5); right: var(--space-5); top:0; height:3px; background: var(--svc-color); border-radius: 0 0 3px 3px}
 .pp-steps .n{font-family: var(--font-mono); font-size: 12px; letter-spacing:.14em; color: var(--svc-color); font-weight: 600}
