@@ -757,7 +757,7 @@ section.equipment{padding-top: 0; padding-bottom: var(--section-pad-y)}
 .equip-grid{display:grid; grid-template-columns: 1fr 1.2fr; gap: var(--space-5); align-items: stretch}
 .sale-panel{display:flex; flex-direction:column; background: var(--ink); color:#fff; border-radius: var(--radius); overflow:hidden; box-shadow: 0 30px 60px -30px rgba(11,31,58,.45)}
 .sale-media{position:relative; aspect-ratio: 16/9; background: #13294a}
-.sale-media img{width:100%; height:100%; object-fit:cover; display:block}
+.sale-media img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block}
 .sale-badge{position:absolute; left: var(--space-5); top: var(--space-5); background: var(--accent-soft); color: var(--ink); font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; padding: 6px 10px; border-radius: var(--radius)}
 .sale-body{display:flex; flex-direction:column; gap: var(--space-4); padding: var(--space-6); flex:1}
 .sale-body h3{font-family: var(--font-display); font-weight: 600; font-size: clamp(28px, 3vw, 40px); letter-spacing: -.025em; line-height: 1.05; margin:0}
@@ -807,9 +807,26 @@ section.equipment{padding-top: 0; padding-bottom: var(--section-pad-y)}
 .pp-others{grid-template-columns: repeat(4, 1fr)}
 @media (max-width: 1000px){ .pp-others{grid-template-columns: repeat(2, 1fr)} }
 @media (max-width: 560px){ .pp-others{grid-template-columns: 1fr} }
-/* la foto del ISO tank crece hasta igualar el alto del bloque de venta */
+/* ISO tank: la foto (4:3) se ve completa; el bloque de venta usa una foto más baja para equilibrar alturas */
 @media (min-width: 901px){
-  .equip-iso{display:flex; flex-direction:column}
-  .equip-iso .pgal{flex: 1 1 auto; aspect-ratio: auto; min-height: 320px}
-  .equip-iso .prod-body{flex: 0 0 auto}
+  .equip-iso .pgal{aspect-ratio: 4/3}
+  .sale-media{aspect-ratio: 2/1}
+}
+
+/* ──────────────────────────────── retoques de diseño (revisión) ──────────────────────────────── */
+.faq-grid h2{font-size: clamp(36px, 3.8vw, 56px); line-height: 1.02}
+.pgal-credit{background: rgba(11,31,58,.6); padding: 4px 7px; border-radius: 4px; text-shadow: none}
+.prod-card ul li{align-items: flex-start; line-height: 1.4}
+.prod-card ul li::before{margin-top: 7px}
+.field input, .field select{height: 48px}
+.sale-panel{box-shadow: 0 16px 36px -24px rgba(11,31,58,.28)}
+@media (min-width: 901px){
+  /* espacio para el botón flotante de WhatsApp */
+  footer.foot .legal{padding-right: 80px}
+  /* fichas: los títulos de las dos columnas comparten fila, así las tablas arrancan a la misma altura */
+  .pp-two{grid-template-rows: auto auto; row-gap: 0}
+  .pp-two > div{display: grid; grid-row: span 2; grid-template-rows: subgrid}
+}
+@media (max-width: 700px){
+  :root{--section-pad-y: 80px}
 }
