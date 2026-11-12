@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
   title: 'Logística Cuyo — Empaque inteligente, logística sin retorno',
   description:
-    'Transporte de graneles y graneles consolidados: flexitanks, IBC, big bags e ISO tanks. Agentes oficiales de LAF. Operamos desde Argentina, Chile, Uruguay y Paraguay hacia todo el mundo.',
-  keywords: ['logística', 'graneles', 'flexitank', 'IBC', 'big bag', 'ISO tank', 'LAF', 'Mendoza', 'Argentina', 'Chile', 'Uruguay', 'Paraguay'],
+    'Transporte de graneles y graneles consolidados: flexitanks, IBC, big bags, dry bulk liners e ISO tanks. Venta de contenedores y módulos habitacionales Bunka. Agentes oficiales de LAF en Argentina, Chile, Uruguay y Paraguay.',
+  keywords: ['logística', 'graneles', 'flexitank', 'IBC', 'big bag', 'dry bulk liner', 'ISO tank', 'venta de contenedores', 'módulos habitacionales', 'LAF', 'Mendoza', 'Argentina', 'Chile', 'Uruguay', 'Paraguay'],
   openGraph: {
     title: 'Logística Cuyo',
-    description: 'Empaque inteligente, logística sin retorno. Flexitanks, IBC, big bags e ISO tanks desde Argentina, Chile, Uruguay y Paraguay.',
+    description: 'Empaque inteligente, logística sin retorno. Flexitanks, IBC, big bags, dry bulk liners, ISO tanks y contenedores desde Argentina, Chile, Uruguay y Paraguay.',
     locale: 'es_AR',
     type: 'website',
     siteName: 'Logística Cuyo',

@@ -10,11 +10,13 @@ export const SITE = {
   tagline: "Empaque inteligente, logística sin retorno.",
   since: 2000,
   // Mismo número para teléfono y WhatsApp.
-  phoneE164: "5492615372590",
-  phoneDisplay: "+54 9 2615 37-2590",
-  email: "info@logisticacuyo.com.ar",
+  phoneE164: "5492614603621",
+  phoneDisplay: "+54 9 261 460-3621",
+  email: "administracion@logisticacuyo.com.ar",
   address: "Carril Urquiza 1850, Mendoza, Argentina",
   whatsappText: "Hola, me gustaría consultar sobre sus servicios logísticos.",
+  instagram: "https://www.instagram.com/logisticacuyo/",
+  linkedin: "https://www.linkedin.com/company/33254438/",
 };
 
 export const waLink = (text: string = SITE.whatsappText) =>
@@ -22,10 +24,14 @@ export const waLink = (text: string = SITE.whatsappText) =>
 
 export const NAV_ITEMS = [
   { id: "productos",  label: "Productos" },
-  { id: "presencia",  label: "Presencia internacional" },
+  { id: "equipos",    label: "Contenedores" },
+  { id: "presencia",  label: "Presencia" },
   { id: "faq",        label: "FAQ" },
   { id: "contacto",   label: "Contacto" },
 ];
+
+// Enlace destacado del navbar (página propia).
+export const NAV_FEATURED = { href: "/bunka", label: "Bunka módulos" };
 
 export const STATS = [
   { v: "25",     pre: "+", l: "Años de experiencia" },
@@ -173,33 +179,116 @@ export const PRODUCTS: Product[] = [
     ],
   },
   {
-    id: "isotanks",
+    id: "dry-bulk-liner",
     num: "04",
-    color: "#1b7a8c",
-    tag: "Líquidos a granel",
-    title: "ISO tanks",
-    subtitle: "Contenedor cisterna intermodal",
-    short: "ISO tanks · cisternas multimodales",
-    desc: "Cisterna de acero inoxidable dentro de un marco de 20 pies, reutilizable y multimodal, para líquidos a granel peligrosos y no peligrosos.",
-    types: ["Multimodales", "Peligrosos y no peligrosos", "Acero inoxidable", "Calefacción opcional"],
+    color: "#8a6a2f",
+    tag: "Graneles sólidos",
+    title: "Dry bulk liner",
+    subtitle: "Liner para contenedor de granel seco",
+    short: "Dry bulk liner · granel seco en contenedor",
+    desc: "Revestimiento que convierte un contenedor estándar en una tolva para graneles secos. Reemplaza bolsas, big bags y pallets en grandes volúmenes.",
+    types: ["Graneles secos de flujo libre", "Carga neumática, por tornillo o por gravedad", "Descarga por succión o con volcador", "Liners a medida"],
     detail: {
-      definition: "Tanque cilíndrico de acero inoxidable montado dentro de un marco estructural estándar de 20 pies, apto para transporte marítimo, ferroviario y por carretera.",
-      cargo: "Líquidos a granel, peligrosos (químicos y combustibles, según la normativa IMDG) y no peligrosos, incluidos productos alimentarios.",
+      definition: "Revestimiento interior que se instala en un contenedor estándar y lo convierte en una tolva para transportar granel seco, sin bolsas ni pallets.",
+      cargo: "Sólidos secos de flujo libre: productos agrícolas, alimentos, químicos no peligrosos y otros graneles.",
       features: [
-        "Estructura reutilizable de acero inoxidable, con más de 20 años de vida útil.",
-        "Alta protección frente a impactos, fugas y condiciones climáticas extremas.",
-        "Aislamiento térmico y calefacción por vapor o eléctrica, según el modelo.",
-        "Un mismo equipo para barco, tren y camión, sin trasvasar la carga.",
+        "Más carga útil por contenedor y menor costo de flete por unidad.",
+        "Menos mano de obra y menos embalaje que bolsas de 25 a 100 kg, big bags o pallets.",
+        "Carga neumática, por tornillo, por cinta o por gravedad.",
+        "Descarga por succión o con camión volcador.",
       ],
-      capacity: "De 21.000 a 26.000 litros.",
+      capacity: "Todo el volumen útil del contenedor.",
     },
-    metaTitle: "ISO Tanks para líquidos y químicos a granel | Logística Cuyo",
-    metaDescription: "Contenedores cisterna ISO de 20 pies para transportar líquidos a granel, químicos peligrosos y productos alimentarios, con máxima seguridad.",
+    metaTitle: "Dry bulk liner para granel seco en contenedor | Logística Cuyo",
+    metaDescription: "Liners para transportar granel seco en contenedores: granos, alimentos y químicos no peligrosos. Más carga útil y menos embalaje que bolsas o big bags.",
     images: [
-      img("isotanks-1", [640, 1110], "ISO tank de 20 pies con bastidor azul"),
+      img("drybulk-1", [640, 1088], "Contenedor con dry bulk liner instalado, listo para la carga"),
+      img("drybulk-2", [640, 1280], "Descarga de un dry bulk liner con camión volcador"),
+      img("drybulk-3", [640, 1280], "Descarga de granel seco por succión desde un contenedor con liner"),
+      img("drybulk-4", [640, 720], "Granos y legumbres, carga típica de un dry bulk liner"),
+      img("drybulk-5", [640, 720], "Pellets plásticos a granel"),
     ],
+    photoCredit: "LAF Technology",
   },
 ];
+
+// ISO tanks: se muestran en la sección de equipos, junto a la venta de contenedores.
+export const ISO_TANK: Product = {
+  id: "isotanks",
+  num: "05",
+  color: "#1b7a8c",
+  tag: "Líquidos a granel",
+  title: "ISO tanks",
+  subtitle: "Contenedor cisterna intermodal",
+  short: "ISO tanks · cisternas multimodales",
+  desc: "Cisterna de acero inoxidable dentro de un marco de 20 pies, reutilizable y multimodal, para líquidos a granel peligrosos y no peligrosos.",
+  types: ["Multimodales", "Peligrosos y no peligrosos", "Acero inoxidable", "Calefacción opcional"],
+  detail: {
+    definition: "Tanque cilíndrico de acero inoxidable montado dentro de un marco estructural estándar de 20 pies, apto para transporte marítimo, ferroviario y por carretera.",
+    cargo: "Líquidos a granel, peligrosos (químicos y combustibles, según la normativa IMDG) y no peligrosos, incluidos productos alimentarios.",
+    features: [
+      "Estructura reutilizable de acero inoxidable, con más de 20 años de vida útil.",
+      "Alta protección frente a impactos, fugas y condiciones climáticas extremas.",
+      "Aislamiento térmico y calefacción por vapor o eléctrica, según el modelo.",
+      "Un mismo equipo para barco, tren y camión, sin trasvasar la carga.",
+    ],
+    capacity: "De 21.000 a 26.000 litros.",
+  },
+  metaTitle: "ISO Tanks para líquidos y químicos a granel | Logística Cuyo",
+  metaDescription: "Contenedores cisterna ISO de 20 pies para transportar líquidos a granel, químicos peligrosos y productos alimentarios, con máxima seguridad.",
+  images: [
+    img("isotanks-1", [640, 1110], "ISO tank de 20 pies con bastidor azul"),
+  ],
+};
+
+// Todos los productos con modal y página propia (/productos/<id>).
+export const CATALOG: Product[] = [...PRODUCTS, ISO_TANK];
+
+// Venta de contenedores (sección de equipos, bloque destacado).
+export const CONTAINER_SALE = {
+  title: "Venta de contenedores",
+  text: "Contenedores de todo tipo y tamaño para transporte, almacenaje o carga refrigerada. Te asesoramos para elegir el que necesitás.",
+  image: { src: "/productos/contenedores-1-1200.webp", srcSet: "/productos/contenedores-1-640.webp 640w, /productos/contenedores-1-1200.webp 1200w", alt: "Grúa portacontenedores moviendo un contenedor en puerto" },
+  types: [
+    { name: "20 y 40 pies", desc: "Dry estándar para carga seca.", img: "/productos/contenedores-dry-320.webp" },
+    { name: "40 pies High Cube", desc: "Más altura interior, más volumen.", img: "/productos/contenedores-hc-320.webp" },
+    { name: "Reefer", desc: "Para carga refrigerada y congelada.", img: "/productos/contenedores-reefer-320.webp" },
+  ],
+  note: "También alquiler y almacenaje en contenedores en nuestro predio.",
+  waText: "Hola, quiero consultar por la compra de contenedores. Me comunico desde el sitio web de Logística Cuyo.",
+};
+
+// Bunka módulos: página propia (/bunka). Contenido de la web anterior de la empresa.
+export const BUNKA = {
+  title: "Bunka módulos",
+  images: [
+    { src: "/productos/bunka-1-1280.webp", srcSet: "/productos/bunka-1-640.webp 640w, /productos/bunka-1-1280.webp 1280w", alt: "Módulos habitacionales Bunka apilados en dos niveles" },
+    { src: "/productos/bunka-2-1280.webp", srcSet: "/productos/bunka-2-640.webp 640w, /productos/bunka-2-1280.webp 1280w", alt: "Oficinas modulares hechas con contenedores" },
+    { src: "/productos/bunka-3-1280.webp", srcSet: "/productos/bunka-3-640.webp 640w, /productos/bunka-3-1280.webp 1280w", alt: "Fachada de un edificio modular de contenedores" },
+    { src: "/productos/bunka-4-1280.webp", srcSet: "/productos/bunka-4-640.webp 640w, /productos/bunka-4-1280.webp 1280w", alt: "Módulo sanitario con lavatorios" },
+    { src: "/productos/bunka-5-1280.webp", srcSet: "/productos/bunka-5-640.webp 640w, /productos/bunka-5-1280.webp 1280w", alt: "Vestuario con duchas dentro de un módulo" },
+    { src: "/productos/bunka-6-1280.webp", srcSet: "/productos/bunka-6-640.webp 640w, /productos/bunka-6-1280.webp 1280w", alt: "Interior de un módulo sanitario" },
+  ],
+  formats: ["Oficina", "Sanitarios", "Dormitorios", "Vestuarios", "Cocina", "Archivo", "Combinaciones a medida"],
+  sizes: [
+    { label: "20 pies", value: "15 m²" },
+    { label: "40 pies", value: "30 m²" },
+    { label: "A medida", value: "Combinamos contenedores según el proyecto" },
+  ],
+  steps: [
+    { title: "Diseño", text: "Definimos el formato y la distribución según el uso: oficina, sanitarios, dormitorios o una combinación." },
+    { title: "Fabricación", text: "Convertimos contenedores marítimos en módulos terminados, listos para usar." },
+    { title: "Traslado", text: "Llevamos el módulo hasta tu obra, planta o terreno." },
+    { title: "Posicionamiento", text: "Lo ubicamos en el lugar final. Se monta y se desmonta rápido cuando hace falta." },
+  ],
+  benefits: [
+    "Independencia y facilidad de transporte.",
+    "Montaje y desmontaje rápidos.",
+    "Alternativa ágil, sustentable y accesible.",
+    "Alta durabilidad, para usos industriales y domésticos.",
+  ],
+  waText: "Hola, quiero consultar por los módulos Bunka. Me comunico desde el sitio web de Logística Cuyo.",
+};
 
 export const PRESENCE_COPY = "Operamos desde Argentina, Chile, Uruguay y Paraguay hacia todo el mundo. Contamos con equipos propios y nos ocupamos de cuidar tu producto de punta a punta, ofreciendo asistencia técnica y asesoramiento para la descarga.";
 
@@ -217,7 +306,7 @@ export interface Depot {
   lat: number;
   hq?: boolean;
   provisional?: boolean;   // ubicación de referencia hasta tener la lista real
-  labelSide?: 'left' | 'right';
+  labelSide?: 'left' | 'right' | 'top';
 }
 
 // Depósitos que se marcan en el mapa (coordenadas en grados decimales).
@@ -226,6 +315,9 @@ export const DEPOTS: Depot[] = [
   { name: "Mendoza", country: "AR", lng: -68.84, lat: -32.89, hq: true },
   // Capitales de cada país (el cliente confirmará o actualizará la lista de depósitos).
   { name: "Buenos Aires", country: "AR", lng: -58.38, lat: -34.60, labelSide: "left" },
+  { name: "Córdoba",      country: "AR", lng: -64.18, lat: -31.42 },
+  { name: "Rosario",      country: "AR", lng: -60.64, lat: -32.95 },
+  { name: "Salta",        country: "AR", lng: -65.41, lat: -24.79 },
   { name: "Santiago",     country: "CL", lng: -70.65, lat: -33.45, labelSide: "left" },
   { name: "Montevideo",   country: "UY", lng: -56.16, lat: -34.90 },
   { name: "Asunción",     country: "PY", lng: -57.58, lat: -25.26 },
@@ -234,7 +326,7 @@ export const DEPOTS: Depot[] = [
 export const FAQS = [
   {
     "q": "¿Qué envase conviene para mi carga?",
-    "a": "Depende del producto y del volumen. Para grandes volúmenes de líquidos no peligrosos, el flexitank convierte un contenedor de 20 pies en un tanque de 16.000 a 24.000 litros. Para envíos parciales o cargas consolidadas, el IBC, de alrededor de 1.000 litros. Para líquidos peligrosos o que requieren control de temperatura o presión, el ISO tank. Para graneles sólidos, como granos o minerales, los big bags. Si tenés dudas, te asesoramos en la elección."
+    "a": "Depende del producto y del volumen. Para grandes volúmenes de líquidos no peligrosos, el flexitank convierte un contenedor de 20 pies en un tanque de 16.000 a 24.000 litros. Para envíos parciales o cargas consolidadas, el IBC, de alrededor de 1.000 litros. Para líquidos peligrosos o que requieren control de temperatura o presión, el ISO tank. Para graneles sólidos, como granos o minerales, los big bags, o el dry bulk liner si la carga ocupa el contenedor completo. Si tenés dudas, te asesoramos en la elección."
   },
   {
     "q": "¿Qué productos se pueden transportar en flexitanks?",
@@ -254,7 +346,7 @@ export const FAQS = [
   },
   {
     "q": "¿Qué relación tienen con LAF Technology?",
-    "a": "Somos agente oficial de LAF Technology en Argentina, Chile, Uruguay y Paraguay, y trabajamos en conjunto con ellos en flexitanks e IBC."
+    "a": "Somos agente oficial de LAF Technology en Argentina, Chile, Uruguay y Paraguay, y trabajamos en conjunto con ellos en flexitanks, IBC y dry bulk liners."
   },
   {
     "q": "¿Ofrecen asesoramiento técnico?",

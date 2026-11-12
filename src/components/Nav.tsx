@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { SITE, NAV_ITEMS, waLink } from '@/data/site';
+import { SITE, NAV_ITEMS, NAV_FEATURED, waLink } from '@/data/site';
 import { WaIcon } from '@/components/icons';
 
 export default function Nav() {
@@ -58,6 +58,7 @@ export default function Nav() {
             {NAV_ITEMS.map(n => (
               <a key={n.id} href={`/#${n.id}`}>{n.label}</a>
             ))}
+            <a href={NAV_FEATURED.href} className="nav-featured">{NAV_FEATURED.label}</a>
           </div>
 
           <div className="nav-cta">
@@ -80,6 +81,7 @@ export default function Nav() {
         {NAV_ITEMS.map(n => (
           <a key={n.id} href={`/#${n.id}`} onClick={() => setOpen(false)}>{n.label}</a>
         ))}
+        <a href={NAV_FEATURED.href} className="nav-featured" onClick={() => setOpen(false)}>{NAV_FEATURED.label}</a>
         <div className="ctas">
           <a href="/#contacto" onClick={() => setOpen(false)} className="btn btn-primary btn-lg">
             Cotizar <span className="arrow">→</span>

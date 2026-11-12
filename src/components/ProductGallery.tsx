@@ -4,7 +4,10 @@ import { useEffect, useRef, useState } from 'react';
 import type { Product } from '@/data/site';
 
 // Galería deslizable (touch / trackpad) con flechas y puntos para mouse.
-export default function ProductGallery({ p }: { p: Product }) {
+// Sirve para productos y para cualquier galería con título, fotos y crédito opcional.
+export type GalleryData = Pick<Product, 'title' | 'images' | 'photoCredit'>;
+
+export default function ProductGallery({ p }: { p: GalleryData }) {
   const track = useRef<HTMLDivElement>(null);
   const [idx, setIdx] = useState(0);
   const cur = useRef(0); // índice actual sin esperar al scroll (clicks rápidos)

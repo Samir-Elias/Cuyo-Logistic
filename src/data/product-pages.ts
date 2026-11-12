@@ -142,6 +142,47 @@ export const PRODUCT_PAGES: Record<string, ProductPage> = {
       { "q": "¿Hay big bags para polvos combustibles?", "a": "Sí, existen versiones antiestáticas. El tipo adecuado depende del producto y del entorno de carga y descarga; te asesoramos para elegirlo." }
     ]
   },
+  "dry-bulk-liner": {
+    "label": "dry bulk liners",
+    "h1": "Dry bulk liner: granel seco en contenedor, sin bolsas",
+    "intro": [
+      "Un dry bulk liner es un revestimiento que se instala dentro de un contenedor estándar y lo convierte en una tolva para graneles secos de flujo libre. La carga viaja como una sola unidad, sin bolsas de 25 a 100 kg, big bags ni pallets. Como agente oficial de LAF Technology, te asesoramos en el liner y en el circuito completo, de silo a silo."
+    ],
+    "howItWorks": [
+      { "title": "Evaluación", "text": "Revisamos el producto y cómo se produce, almacena y transporta, para definir el liner y los equipos." },
+      { "title": "Instalación", "text": "El liner, hecho a medida, se instala dentro de un contenedor estándar." },
+      { "title": "Carga", "text": "El producto se carga a granel con sistema neumático, tornillo, cinta o por gravedad." },
+      { "title": "Descarga", "text": "En destino se descarga por succión o con camión volcador, directo al silo o la tolva." }
+    ],
+    "applications": [
+      { "industry": "Agro", "examples": "Granos y otros productos agrícolas." },
+      { "industry": "Alimentos", "examples": "Ingredientes y alimentos secos a granel." },
+      { "industry": "Químicos no peligrosos", "examples": "Pellets, resinas y otros sólidos de flujo libre." },
+      { "industry": "Otros graneles", "examples": "Cualquier sólido seco que fluya libremente." }
+    ],
+    "specs": [
+      { "label": "Contenedor", "value": "Estándar, con el liner instalado en su interior" },
+      { "label": "Carga", "value": "Neumática, por tornillo, por cinta o por gravedad" },
+      { "label": "Descarga", "value": "Por succión o con camión volcador" },
+      { "label": "Diseño", "value": "A medida, según el producto y los equipos de cada planta" },
+      { "label": "Reemplaza", "value": "Bolsas de 25 a 100 kg, big bags y pallets" }
+    ],
+    "comparison": {
+      "title": "¿Dry bulk liner o big bags?",
+      "alternativeName": "Big bags",
+      "rows": [
+        { "aspect": "Unidad de carga", "thisProduct": "El contenedor completo, como una sola unidad", "alternative": "Bolsas de 500 a 2.000 kg" },
+        { "aspect": "Embalaje", "thisProduct": "Un liner por contenedor", "alternative": "Una bolsa por cada tonelada, aproximadamente" },
+        { "aspect": "Equipos", "thisProduct": "Carga neumática o por gravedad y descarga por succión o volcador", "alternative": "Autoelevador o grúa y estación de descarga" },
+        { "aspect": "Cuándo conviene", "thisProduct": "Grandes volúmenes de un mismo producto entre plantas", "alternative": "Cargas divididas, varios destinos o consumo por tandas" }
+      ]
+    },
+    "faqs": [
+      { "q": "¿Qué productos se pueden cargar en un dry bulk liner?", "a": "Sólidos secos de flujo libre: productos agrícolas, alimentos, químicos no peligrosos y otros graneles." },
+      { "q": "¿Qué equipos se necesitan para cargar y descargar?", "a": "Para cargar, un sistema neumático, de tornillo, de cinta o por gravedad. Para descargar, succión por vacío o un camión volcador. Te ayudamos a definir el circuito." },
+      { "q": "¿Conviene más que los big bags?", "a": "En grandes volúmenes de un mismo producto, sí: más carga útil por contenedor, menos embalaje y menos mano de obra. Para cargas divididas, el big bag sigue siendo más práctico." }
+    ]
+  },
   "isotanks": {
     "label": "ISO tanks",
     "h1": "ISO tanks: contenedores cisterna para líquidos a granel",

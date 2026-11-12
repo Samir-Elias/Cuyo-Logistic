@@ -149,7 +149,10 @@ export default function Contact() {
                       <option>Flexitanks</option>
                       <option>IBC</option>
                       <option>Big bags</option>
+                      <option>Dry bulk liner</option>
                       <option>ISO tanks</option>
+                      <option>Contenedores (venta)</option>
+                      <option>Bunka módulos</option>
                       <option>Consulta general</option>
                     </select>
                   </div>

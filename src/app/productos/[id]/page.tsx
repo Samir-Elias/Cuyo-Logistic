@@ -6,21 +6,21 @@ import WaFloat from '@/components/WaFloat';
 import LeadTracker from '@/components/LeadTracker';
 import ProductGallery from '@/components/ProductGallery';
 import { WaIcon } from '@/components/icons';
-import { PRODUCTS, waLink } from '@/data/site';
+import { CATALOG, waLink } from '@/data/site';
 import { PRODUCT_PAGES } from '@/data/product-pages';
 import { SITE_URL } from '@/lib/site-url';
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return PRODUCTS.map(p => ({ id: p.id }));
+  return CATALOG.map(p => ({ id: p.id }));
 }
 
 type Params = Promise<{ id: string }>;
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { id } = await params;
-  const p = PRODUCTS.find(x => x.id === id);
+  const p = CATALOG.find(x => x.id === id);
   if (!p) return {};
   const img = p.images[0];
   return {
@@ -41,11 +41,11 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 export default async function ProductPage({ params }: { params: Params }) {
   const { id } = await params;
-  const p = PRODUCTS.find(x => x.id === id);
+  const p = CATALOG.find(x => x.id === id);
   const page = PRODUCT_PAGES[id];
   if (!p || !page) notFound();
 
-  const others = PRODUCTS.filter(x => x.id !== p.id);
+  const others = CATALOG.filter(x => x.id !== p.id);
   const wa = waLink(`Hola, quiero cotizar ${p.title}. Me comunico desde el sitio web de Logística Cuyo.`);
 
   const jsonLd = [

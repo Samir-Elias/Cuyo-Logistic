@@ -1,6 +1,7 @@
 import Nav from '@/components/Nav';
 import Hero from '@/components/sections/Hero';
 import Products from '@/components/sections/Products';
+import Equipment from '@/components/sections/Equipment';
 import Presence from '@/components/sections/Presence';
 import FAQ from '@/components/sections/FAQ';
 import Contact from '@/components/sections/Contact';
@@ -15,6 +16,7 @@ export default function Home() {
       <Nav />
       <Hero />
       <Products />
+      <Equipment />
       <Presence />
       <FAQ />
       <Contact />

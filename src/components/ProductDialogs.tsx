@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { PRODUCTS, waLink, type Product } from '@/data/site';
+import { CATALOG, waLink, type Product } from '@/data/site';
 import ProductGallery from '@/components/ProductGallery';
 import { Skeleton } from '@/components/Skeleton';
 import { WaIcon } from '@/components/icons';
@@ -78,11 +78,12 @@ function Dialog({ p }: { p: Product }) {
 }
 
 // Abre el modal al hacer click en una tarjeta de producto (salvo en sus links y flechas).
+// Vale para las tarjetas de la grilla y para el ISO tank de la sección de equipos.
 export default function ProductDialogs() {
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       const t = e.target as Element | null;
-      const card = t?.closest?.('.prod-card[data-product]') as HTMLElement | null;
+      const card = t?.closest?.('[data-product]') as HTMLElement | null;
       if (!card) return;
       const opener = t?.closest('.prod-open');
       if (!opener && t?.closest('a, button')) return; // "Cotizar", flechas de la galería, etc.
@@ -95,5 +96,5 @@ export default function ProductDialogs() {
     return () => document.removeEventListener('click', onClick);
   }, []);
 
-  return <>{PRODUCTS.map(p => <Dialog key={p.id} p={p} />)}</>;
+  return <>{CATALOG.map(p => <Dialog key={p.id} p={p} />)}</>;
 }

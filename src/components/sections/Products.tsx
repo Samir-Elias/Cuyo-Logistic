@@ -3,7 +3,7 @@ import { Skeleton } from '@/components/Skeleton';
 import ProductGallery from '@/components/ProductGallery';
 import ProductDialogs from '@/components/ProductDialogs';
 
-function ProductIcon({ id }: { id: string }) {
+export function ProductIcon({ id }: { id: string }) {
   if (id === 'flexitanks') return (
     <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
       <rect x="3" y="8" width="26" height="16" rx="1" />
@@ -23,6 +23,13 @@ function ProductIcon({ id }: { id: string }) {
       <path d="M8 9h16l2 16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L8 9Z" />
       <path d="M11 9V5M21 9V5M11 5h3M18 5h3" />
       <path d="M9 16h14" opacity=".4" />
+    </svg>
+  );
+  if (id === 'dry-bulk-liner') return (
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <rect x="3" y="8" width="26" height="16" rx="0.5" />
+      <path d="M5 22l7-6 5 3 5-5 5 4v4H5z" opacity=".5" />
+      <circle cx="10" cy="20" r=".6" /><circle cx="16" cy="21" r=".6" /><circle cx="22" cy="19" r=".6" />
     </svg>
   );
   return (

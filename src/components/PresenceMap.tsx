@@ -70,8 +70,9 @@ export default function PresenceMap() {
             <g key={`${d.country}-${d.name}`} transform={`translate(${x} ${y})`} className={d.hq ? 'pm-pin hq' : 'pm-pin'}>
               {d.hq && <circle r="14" className="pm-pulse" />}
               <circle r={d.hq ? 6 : 4.5} className="pm-dot" />
-              <text x={d.labelSide === 'left' ? -10 : 10} y={4} textAnchor={d.labelSide === 'left' ? 'end' : 'start'}
-                    className="pm-pin-label">{d.name}{d.hq ? ' · Sede' : ''}</text>
+              <text x={d.labelSide === 'left' ? -10 : d.labelSide === 'top' ? 0 : 10} y={d.labelSide === 'top' ? -18 : 4}
+                    textAnchor={d.labelSide === 'left' ? 'end' : d.labelSide === 'top' ? 'middle' : 'start'}
+                    className="pm-pin-label">{d.name}</text>
             </g>
           );
         })}
