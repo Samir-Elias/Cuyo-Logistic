@@ -782,9 +782,11 @@ section.equipment{padding-top: 0; padding-bottom: var(--section-pad-y)}
 }
 
 /* ──────────────────────────────── navbar: enlace destacado (Bunka) ──────────────────────────────── */
-.nav-links a.nav-featured{opacity:1; color: var(--accent); font-weight: 600; border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); background: color-mix(in srgb, var(--accent) 7%, transparent); margin-left: 6px}
-.nav-links a.nav-featured:hover{background: color-mix(in srgb, var(--accent) 13%, transparent)}
-.mobile-menu a.nav-featured{color: var(--accent); font-weight: 600}
+:root{--bk-dark:#0A2A12; --bk-green:#74C465}
+.nav-featured img{display:inline-block; vertical-align:-2px; margin-right:7px}
+.nav-links a.nav-featured{opacity:1; color: var(--bk-dark); font-weight: 600; border: 1px solid color-mix(in srgb, var(--bk-green) 70%, transparent); background: color-mix(in srgb, var(--bk-green) 12%, transparent); margin-left: 6px}
+.nav-links a.nav-featured:hover{background: color-mix(in srgb, var(--bk-green) 22%, transparent)}
+.mobile-menu a.nav-featured{color: var(--bk-dark); font-weight: 600}
 /* con el enlace extra, el menú completo entra recién desde 1100px */
 @media (max-width: 1100px){
   .nav-links{display:none}
@@ -799,7 +801,7 @@ section.equipment{padding-top: 0; padding-bottom: var(--section-pad-y)}
 
 /* ──────────────────────────────── Bunka ──────────────────────────────── */
 .bk-formats{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap: var(--space-3)}
-.bk-formats li{padding: 14px 20px; background: var(--surface); border:1px solid var(--hair); border-left: 3px solid var(--svc-color); border-radius: var(--radius); font-family: var(--font-display); font-weight: 600; font-size: 17px}
+.bk-formats li{padding: 14px 20px; background: var(--surface); border:1px solid var(--hair); border-left: 3px solid var(--bk-green); border-radius: var(--radius); font-family: var(--font-bunka), var(--font-display); font-weight: 500; font-size: 17px; color: var(--bk-dark)}
 .pp-apps li.bk-benefit{grid-template-columns: 1fr}
 .pp-apps li.bk-benefit span{color: var(--ink); font-size: 15.5px}
 
@@ -826,7 +828,60 @@ section.equipment{padding-top: 0; padding-bottom: var(--section-pad-y)}
   /* fichas: los títulos de las dos columnas comparten fila, así las tablas arrancan a la misma altura */
   .pp-two{grid-template-rows: auto auto; row-gap: 0}
   .pp-two > div{display: grid; grid-row: span 2; grid-template-rows: subgrid}
+  .pp-two > div > *{align-self: start}
 }
 @media (max-width: 700px){
   :root{--section-pad-y: 80px}
+}
+
+/* ──────────────────────────────── Bunka: identidad de marca (brandbook) ──────────────────────────────── */
+.bk{--svc-color: var(--bk-green)}
+.bk h1, .bk h2, .bk h3, .bk .bk-claim{font-family: var(--font-bunka), var(--font-display)}
+.bk .pp-steps .n{color: var(--bk-dark)}
+.pp .bk-hero{position:relative; overflow:hidden; color:#fff; padding: calc(72px + var(--space-7)) 0 var(--space-8);
+  background: radial-gradient(110% 90% at 85% 0%, #17461f 0%, var(--bk-dark) 62%)}
+.bk-hero .pp-hero-grid{position:relative; z-index:1}
+.bk-hero .pp-crumbs, .bk-hero .pp-crumbs a{color: rgba(255,255,255,.65)}
+.bk-hero .pp-crumbs a:hover{color:#fff}
+.bk-logo{display:block; width: 240px; height:auto; margin: 0 0 var(--space-5)}
+.bk-hero h1{font-weight: 600; font-size: clamp(34px, 4vw, 54px); letter-spacing: -.02em; line-height: 1.04; margin: 0 0 var(--space-3); color:#fff}
+.bk-hero .bk-claim{color: var(--bk-green); font-size: 19px; font-weight: 500; line-height: 1.4; margin: 0 0 var(--space-3)}
+.bk-hero .pp-hero-text .pp-lede{color: rgba(255,255,255,.82); font-size: 17px}
+.bk-hero .pp-cap{background: rgba(116,196,101,.1); border-color: rgba(116,196,101,.35)}
+.bk-hero .pp-cap .l{color: var(--bk-green)}
+.bk-hero .pp-cap .v{color:#fff}
+.bk-hero .btn-ghost{color:#fff; border-color: rgba(255,255,255,.4)}
+.bk-hero .btn-ghost:hover{background: rgba(255,255,255,.08)}
+.bk-hero .pp-hero-media .pgal{box-shadow: 0 30px 60px -30px rgba(0,0,0,.6)}
+.bk-door{position:absolute; right:-140px; bottom:-200px; width: 560px; height:auto; opacity:.1; pointer-events:none; z-index:0}
+.bk-why{display:flex; flex-direction:column; gap: var(--space-4)}
+.bk-values{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap: 8px}
+.bk-values li{padding: 6px 12px; border-radius: 999px; background: var(--bk-dark); color: var(--bk-green); font-family: var(--font-bunka), var(--font-display); font-weight: 500; font-size: 14px}
+.pp .bk-cta{position:relative; overflow:hidden; background: var(--bk-dark) !important}
+.bk-cta .pp-wrap{position:relative; z-index:1}
+.bk-cta h2{color:#fff}
+@media (max-width: 900px){
+  .pp .bk-hero{padding-top: calc(72px + var(--space-6))}
+  .bk-logo{width: 200px}
+  .bk-door{width: 380px; right: -120px; bottom: -140px}
+}
+
+/* franja de Bunka en la home */
+section.bk-band{padding-top: 0; padding-bottom: var(--section-pad-y)}
+.bk-band-card{position:relative; overflow:hidden; display:grid; grid-template-columns: 1.1fr 1fr; border-radius: 16px; color:#fff;
+  background: radial-gradient(120% 120% at 0% 100%, #17461f 0%, var(--bk-dark) 60%)}
+.bk-band-text{position:relative; z-index:1; display:flex; flex-direction:column; align-items:flex-start; gap: var(--space-4); padding: var(--space-7)}
+.bk-band-logo{width: 220px; height:auto}
+.bk-band-text h2{font-family: var(--font-bunka), var(--font-display); font-weight: 600; font-size: clamp(28px, 3vw, 42px); letter-spacing: -.02em; line-height: 1.05; margin:0}
+.bk-band-text p{margin:0; color: rgba(255,255,255,.8); font-size: 16px; line-height: 1.55; max-width: 48ch}
+.bk-btn{background: var(--bk-green); border-color: var(--bk-green); color: var(--bk-dark); font-weight: 600}
+.bk-btn:hover{background: #86d077; border-color: #86d077}
+.bk-band-media{position:relative; min-height: 340px}
+.bk-band-media img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.bk-band-door{position:absolute; left:-90px; bottom:-150px; width: 380px; height:auto; opacity:.1; pointer-events:none}
+@media (max-width: 900px){
+  .bk-band-card{grid-template-columns: 1fr}
+  .bk-band-media{min-height: 220px; order: -1}
+  .bk-band-text{padding: var(--space-5)}
+  .bk-band-text .bk-btn{width:100%; justify-content:center}
 }

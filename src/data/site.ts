@@ -258,9 +258,12 @@ export const CONTAINER_SALE = {
   waText: "Hola, quiero consultar por la compra de contenedores. Me comunico desde el sitio web de Logística Cuyo.",
 };
 
-// Bunka módulos: página propia (/bunka). Contenido de la web anterior de la empresa.
+// Bunka módulos: página propia (/bunka). Textos de la web anterior y del brandbook de Bunka.
 export const BUNKA = {
   title: "Bunka módulos",
+  claim: "Somos soluciones modulares.",
+  subclaim: "Creamos espacios habitables y multifuncionales.",
+  intro: "Alquiler y venta de módulos habitacionales hechos con contenedores marítimos en desuso. Se adaptan a cada necesidad: oficinas, viviendas, sanitarios, espacios comerciales y refrigerados.",
   images: [
     { src: "/productos/bunka-1-1280.webp", srcSet: "/productos/bunka-1-640.webp 640w, /productos/bunka-1-1280.webp 1280w", alt: "Módulos habitacionales Bunka apilados en dos niveles" },
     { src: "/productos/bunka-2-1280.webp", srcSet: "/productos/bunka-2-640.webp 640w, /productos/bunka-2-1280.webp 1280w", alt: "Oficinas modulares hechas con contenedores" },
@@ -269,7 +272,7 @@ export const BUNKA = {
     { src: "/productos/bunka-5-1280.webp", srcSet: "/productos/bunka-5-640.webp 640w, /productos/bunka-5-1280.webp 1280w", alt: "Vestuario con duchas dentro de un módulo" },
     { src: "/productos/bunka-6-1280.webp", srcSet: "/productos/bunka-6-640.webp 640w, /productos/bunka-6-1280.webp 1280w", alt: "Interior de un módulo sanitario" },
   ],
-  formats: ["Oficina", "Sanitarios", "Dormitorios", "Vestuarios", "Cocina", "Archivo", "Combinaciones a medida"],
+  formats: ["Oficinas", "Viviendas", "Dormitorios", "Sanitarios", "Vestuarios", "Cocinas", "Espacios comerciales", "Espacios refrigerados", "Archivo", "Combinaciones a medida"],
   sizes: [
     { label: "20 pies", value: "15 m²" },
     { label: "40 pies", value: "30 m²" },
@@ -282,11 +285,12 @@ export const BUNKA = {
     { title: "Posicionamiento", text: "Lo ubicamos en el lugar final. Se monta y se desmonta rápido cuando hace falta." },
   ],
   benefits: [
+    "Bajo impacto ambiental: reutilizamos contenedores en desuso.",
+    "Rápida respuesta a demandas puntuales: se montan y desmontan en poco tiempo.",
+    "Alta resistencia a condiciones extremas.",
     "Independencia y facilidad de transporte.",
-    "Montaje y desmontaje rápidos.",
-    "Alternativa ágil, sustentable y accesible.",
-    "Alta durabilidad, para usos industriales y domésticos.",
   ],
+  values: ["Sustentabilidad", "Innovación", "Practicidad", "Durabilidad"],
   waText: "Hola, quiero consultar por los módulos Bunka. Me comunico desde el sitio web de Logística Cuyo.",
 };
 

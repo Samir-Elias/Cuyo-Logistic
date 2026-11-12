@@ -6,10 +6,11 @@ import LeadTracker from '@/components/LeadTracker';
 import ProductGallery from '@/components/ProductGallery';
 import { WaIcon } from '@/components/icons';
 import { BUNKA, waLink } from '@/data/site';
+import { outfit } from '@/lib/fonts';
 import { SITE_URL } from '@/lib/site-url';
 
-const TITLE = 'Bunka módulos: módulos habitacionales en contenedores | Logística Cuyo';
-const DESCRIPTION = 'Oficinas, sanitarios, dormitorios, vestuarios y cocinas en contenedores marítimos de 20 y 40 pies, o a medida. Diseño, fabricación, traslado y posicionamiento.';
+const TITLE = 'Bunka: módulos habitacionales en contenedores | Logística Cuyo';
+const DESCRIPTION = 'Alquiler y venta de módulos habitacionales en contenedores de 20 y 40 pies o a medida: oficinas, viviendas, sanitarios, espacios comerciales y refrigerados.';
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -40,21 +41,23 @@ export default function BunkaPage() {
   return (
     <>
       <Nav />
-      <main className="pp" style={{ '--svc-color': '#1f7a5a' } as React.CSSProperties}>
+      <main className={`pp bk ${outfit.variable}`}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
 
-        <section id="top" className="pp-hero">
+        <section id="top" className="bk-hero">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/bunka/bunka-door.webp" alt="" aria-hidden="true" className="bk-door" />
           <div className="pp-wrap pp-hero-grid">
             <div className="pp-hero-text">
               <nav className="pp-crumbs" aria-label="Ruta de navegación">
                 <a href="/">Inicio</a><span>/</span><span aria-current="page">{BUNKA.title}</span>
               </nav>
-              <div className="meta-row"><span className="tag">Módulos habitacionales</span><span>Construcción modular</span></div>
-              <h1>Bunka módulos: espacios habitacionales en contenedores</h1>
-              <p className="pp-lede">
-                Convertimos contenedores marítimos en espacios funcionales y versátiles: oficinas,
-                sanitarios, dormitorios, vestuarios y más, para usos industriales y domésticos.
-              </p>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/bunka/bunka-logo-claim-dark-bg.png" alt="Bunka · Soluciones modulares" className="bk-logo"
+                   width={260} height={74} fetchPriority="high" />
+              <h1>Módulos habitacionales en contenedores</h1>
+              <p className="bk-claim">{BUNKA.claim} {BUNKA.subclaim}</p>
+              <p className="pp-lede">{BUNKA.intro}</p>
               <div className="pp-cap"><span className="l">Tamaños</span><span className="v">20 pies (15 m²) · 40 pies (30 m²) · a medida</span></div>
               <div className="pp-ctas">
                 <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-wa btn-lg" data-lead-source="bunka">
@@ -101,17 +104,24 @@ export default function BunkaPage() {
             </div>
             <div>
               <div className="pp-head"><div className="eyebrow">VENTAJAS</div><h2>Por qué un módulo</h2></div>
-              <ul className="pp-apps">
-                {BUNKA.benefits.map(b => <li key={b} className="bk-benefit"><span>{b}</span></li>)}
-              </ul>
+              <div className="bk-why">
+                <ul className="pp-apps">
+                  {BUNKA.benefits.map(b => <li key={b} className="bk-benefit"><span>{b}</span></li>)}
+                </ul>
+                <ul className="bk-values" aria-label="Valores de Bunka">
+                  {BUNKA.values.map(v => <li key={v}>{v}</li>)}
+                </ul>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="pp-cta">
+        <section className="pp-cta bk-cta">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/bunka/bunka-door.webp" alt="" aria-hidden="true" className="bk-door" loading="lazy" />
           <div className="pp-wrap">
-            <h2>¿Necesitás un módulo?</h2>
-            <p>Contanos el uso, la cantidad de módulos y dónde lo necesitás, y te pasamos una propuesta.</p>
+            <h2>{BUNKA.claim}</h2>
+            <p>Contanos el uso, la cantidad de módulos y dónde los necesitás, y te pasamos una propuesta de alquiler o venta.</p>
             <div className="pp-ctas">
               <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-wa btn-lg" data-lead-source="bunka-cta">
                 <WaIcon /> Consultar por WhatsApp

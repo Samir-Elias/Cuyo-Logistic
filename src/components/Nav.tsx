@@ -58,7 +58,10 @@ export default function Nav() {
             {NAV_ITEMS.map(n => (
               <a key={n.id} href={`/#${n.id}`}>{n.label}</a>
             ))}
-            <a href={NAV_FEATURED.href} className="nav-featured">{NAV_FEATURED.label}</a>
+            <a href={NAV_FEATURED.href} className="nav-featured">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/bunka/bunka-symbol.png" alt="" width={17} height={16} />{NAV_FEATURED.label}
+            </a>
           </div>
 
           <div className="nav-cta">
@@ -81,7 +84,10 @@ export default function Nav() {
         {NAV_ITEMS.map(n => (
           <a key={n.id} href={`/#${n.id}`} onClick={() => setOpen(false)}>{n.label}</a>
         ))}
-        <a href={NAV_FEATURED.href} className="nav-featured" onClick={() => setOpen(false)}>{NAV_FEATURED.label}</a>
+        <a href={NAV_FEATURED.href} className="nav-featured" onClick={() => setOpen(false)}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/bunka/bunka-symbol.png" alt="" width={21} height={20} />{NAV_FEATURED.label}
+        </a>
         <div className="ctas">
           <a href="/#contacto" onClick={() => setOpen(false)} className="btn btn-primary btn-lg">
             Cotizar <span className="arrow">→</span>

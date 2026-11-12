@@ -2,6 +2,7 @@ import Nav from '@/components/Nav';
 import Hero from '@/components/sections/Hero';
 import Products from '@/components/sections/Products';
 import Equipment from '@/components/sections/Equipment';
+import BunkaBand from '@/components/sections/BunkaBand';
 import Presence from '@/components/sections/Presence';
 import FAQ from '@/components/sections/FAQ';
 import Contact from '@/components/sections/Contact';
@@ -17,6 +18,7 @@ export default function Home() {
       <Hero />
       <Products />
       <Equipment />
+      <BunkaBand />
       <Presence />
       <FAQ />
       <Contact />
